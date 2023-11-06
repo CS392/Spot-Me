@@ -23,7 +23,7 @@ section > div:first-of-type {
 }
 
 input {
-  margin-bottom: 5vh;
+  margin-bottom: 2.5vh;
   padding: 0.25rem 0.5rem;
 }
 
@@ -31,9 +31,9 @@ button {
   transition: all 0.25s ease-in-out;
   border-radius: 0.25rem;
   width: 70%;
-  padding: 0.5rem 0rem;
+  padding: 0.5rem 0;
   border: solid 1px white;
-  margin: auto;
+  margin: 5vh auto auto;
 }
 button:hover {
   background: white;
