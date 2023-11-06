@@ -1,1 +1,44 @@
 @import 'variable';
+
+main {
+  display: grid;
+  place-items: center;
+}
+
+section {
+  margin-top: 10vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+}
+
+section > div:first-of-type {
+  width: 30vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  text-align: start;
+}
+
+input {
+  margin-bottom: 5vh;
+  padding: 0.25rem 0.5rem;
+}
+
+button {
+  transition: all 0.25s ease-in-out;
+  border-radius: 0.25rem;
+  width: 70%;
+  padding: 0.5rem 0rem;
+  border: solid 1px white;
+  margin: auto;
+  &:hover {
+    background: white;
+    color: black;
+    border: solid 1px black;
+  }
+}

@@ -15,7 +15,7 @@ export default class Login extends Component {
                     <button> Login </button>
                     <hr/>
                     <p> 
-                        No account yet? <a href={"#"}> Sign Up </a>
+                        No account yet? <a href={"/signup"}> Sign Up </a>
                     </p>
                 </section>
             </main>
