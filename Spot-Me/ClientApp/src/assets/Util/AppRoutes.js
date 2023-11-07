@@ -2,6 +2,7 @@ import { FetchData } from "../../components/FetchData";
 import { Home } from "../../components/Home";
 import Login from "../../pages/Login"
 import SignUp from "../../pages/SignUp";
+import {FriendList} from "../../pages/FriendList";
 
 const AppRoutes = [
   {
@@ -19,6 +20,10 @@ const AppRoutes = [
   {
     path: '/signup',
     element: <SignUp/>
+  },
+  {
+    path: '/friends',
+    element: <FriendList/>
   }
 ];
 
