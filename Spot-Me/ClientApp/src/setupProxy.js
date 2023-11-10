@@ -6,6 +6,7 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 
 const context =  [
   "/weatherforecast",
+  "/api/user",
 ];
 
 module.exports = function(app) {
@@ -13,6 +14,7 @@ module.exports = function(app) {
     proxyTimeout: 10000,
     target: target,
     secure: false,
+    changeOrigin: true,
     headers: {
       Connection: 'Keep-Alive'
     }
