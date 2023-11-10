@@ -21,10 +21,14 @@
     <Content Remove="$(SpaRoot)**"/>
     <None Remove="$(SpaRoot)**"/>
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**"/>
+    <None Remove="Services\" />
+    <None Remove="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\src\assets\css\"/>
     <Folder Include="ClientApp\src\assets\images\"/>
+    <Folder Include="Services\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <Exec Command="node --version" ContinueOnError="true">
@@ -39,7 +43,7 @@
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build"/>
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)build\**"/>
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
