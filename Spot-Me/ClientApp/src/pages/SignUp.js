@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import "../assets/css/loginPage.css";
 export default class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -53,7 +52,7 @@ export default class SignUp extends Component {
     render() {
         return (
             <main>
-                <section>
+                <section className={"oauth"}>
                     <h1> Sign Up </h1>
                     <div>
                         <h4> User Name </h4>

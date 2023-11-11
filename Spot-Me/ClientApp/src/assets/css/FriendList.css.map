@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"FriendList.css"}
+{"version":3,"sourceRoot":"","sources":["../scss/FriendList.scss"],"names":[],"mappings":"AAAA;EACE;;AACA;EACE;;AAIF;EACE;EACA;EACA;;AAIF;EACE;;AACA;EACE;EACA;;AACA;EACE;;AAEF;EACE","file":"FriendList.css"}

@@ -28,7 +28,7 @@ export class Home extends Component {
         <section>
           {/* Disable for second time user */}
           <div className={"welcome"}>
-            <h2> Welcome to Spot Me! </h2>
+            <h2> Welcome user </h2>
           </div>
           <div className={"selections"}>
               { exerciseArray.map((exercise) => {

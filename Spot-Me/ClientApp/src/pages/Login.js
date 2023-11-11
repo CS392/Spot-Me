@@ -4,7 +4,7 @@ export default class Login extends Component {
     render() {
         return (
             <main> 
-                <section>
+                <section className={"oauth"}>
                     <h1> Login </h1>
                     <div>
                         <h4> User Name </h4>

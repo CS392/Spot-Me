@@ -5,8 +5,8 @@ main {
   place-items: center;
 }
 
-section {
-  margin-top: 10vh;
+.oauth {
+  margin-top: 5vh;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -15,8 +15,9 @@ section {
   position: relative;
 }
 
-section > div:first-of-type {
+.oauth > div:first-of-type {
   width: 30vw;
+  margin: auto;
   position: relative;
   display: flex;
   flex-direction: column;

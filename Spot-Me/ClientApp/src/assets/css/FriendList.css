@@ -1,3 +1,26 @@
-
+.friendList {
+  margin-top: 5vh;
+}
+.friendList section > h4 {
+  text-align: left;
+}
+.friendList section > input {
+  width: 100%;
+  padding-left: min(20px, 2.5vw);
+  margin-bottom: 5vh;
+}
+.friendList section > .blockHeader {
+  display: flex;
+}
+.friendList section > .blockHeader > h4 {
+  flex: 1;
+  margin: 0;
+}
+.friendList section > .blockHeader > h4:first-of-type {
+  text-align: left;
+}
+.friendList section > .blockHeader > h4:last-of-type {
+  text-align: right;
+}
 
 /*# sourceMappingURL=FriendList.css.map */
