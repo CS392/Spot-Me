@@ -13,13 +13,20 @@ export class Home extends Component {
   }
   
   componentDidMount() {
-    fetch("https://localhost:7229/api/user")
-      .then(res => res.json())
-      .then(d => {
-        console.log(d);
-        this.setState({students: d});
-      })
-      .catch(e => console.log(e));
+    // fetch("https://localhost:7229/api/user")
+    //   .then(res => res.json())
+    //   .then(d => {
+    //     console.log(d);
+    //     this.setState({students: d});
+    //   })
+    //   .catch(e => console.log(e));
+    fetch("https://localhost:7229/api/map/places/nearby")
+    .then(res => res.json())
+    .then(d => {
+      console.log(d);
+      this.setState({students: d});
+    })
+    .catch(e => console.log(e));
   }
 
   render() {
