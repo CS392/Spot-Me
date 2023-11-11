@@ -1,3 +1,22 @@
-
+.friendCard {
+  width: 100%;
+}
+.friendCard:hover {
+  cursor: pointer;
+}
+.friendCard > div {
+  display: flex;
+  padding: 1rem 1rem;
+  border: solid black 2px;
+  border-radius: 0.5rem;
+  margin-bottom: 2.5vh;
+  transition: all ease-out 0.2s;
+}
+.friendCard > div:hover {
+  border: solid #fff 2px;
+}
+.friendCard > div > div {
+  flex: 1;
+}
 
 /*# sourceMappingURL=FriendCard.css.map */

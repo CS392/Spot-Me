@@ -3,15 +3,13 @@ import { Home } from "../../components/Home";
 import Login from "../../pages/Login"
 import SignUp from "../../pages/SignUp";
 import {FriendList} from "../../pages/FriendList";
+import {FriendPage} from "../../pages/FriendPage";
+import {TrackerPage} from "../../pages/TrackerPage";
 
 const AppRoutes = [
   {
     index: true,
     element: <Home />
-  },
-  {
-    path: '/fetch-data',
-    element: <FetchData />
   },
   {
     path: '/login',
@@ -24,6 +22,14 @@ const AppRoutes = [
   {
     path: '/friends',
     element: <FriendList/>
+  },
+  {
+    path: '/tracker',
+    element: <TrackerPage/>
+  },
+  {
+    path: `/user/*`,
+    element: <FriendPage/>
   }
 ];
 
