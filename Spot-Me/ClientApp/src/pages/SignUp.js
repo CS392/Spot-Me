@@ -10,7 +10,22 @@ export default class SignUp extends Component {
         }
     }
 
-    handleSignUp = () => {
+    componentDidMount() {
+        if (localStorage.getItem("user") !== null) {
+            window.location.href = "/";
+        }
+    }
+
+    handleSignUp = async () => {
+
+        const users = await fetch("https://localhost:7229/api/user").then(res => res.json());
+        for (let index = 0; index < users.length; index++) {
+            if (this.state.username === users[index].userName) {
+                alert("Username already exists");
+                return;
+            }
+        }
+
         if (this.state.password !== this.state.confirmPassword) {
             alert("Passwords do not match");
             return;
@@ -27,6 +42,7 @@ export default class SignUp extends Component {
             alert("Username must 4-12 characters long");
             return;
         }
+
         const entry = {
             username: this.state.username,
             password: this.state.password,
