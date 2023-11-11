@@ -1,0 +1,10 @@
+@import 'variable';
+
+.friendPage {
+  & > .map {
+    margin: 2.5vh;
+    border-radius: 0.25rem;
+    border: solid black 1px;
+    height: 40vh;
+  } 
+}

@@ -8,7 +8,7 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: {}
+      users: {}
     };
   }
   
@@ -24,18 +24,18 @@ export class Home extends Component {
     .then(res => res.json())
     .then(d => {
       console.log(d);
-      this.setState({students: d});
+      this.setState({users: d});
     })
     .catch(e => console.log(e));
   }
 
   render() {
-    console.log(this.state.students);
+    console.log(this.state.users);
     return (
         <section>
           {/* Disable for second time user */}
           <div className={"welcome"}>
-            <h2> Welcome to Spot Me! </h2>
+            <h2> Welcome user </h2>
           </div>
           <div className={"selections"}>
               { exerciseArray.map((exercise) => {

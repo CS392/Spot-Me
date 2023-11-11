@@ -1,0 +1,28 @@
+.friendList {
+  margin-top: 5vh;
+  & section > h4 {
+    text-align: left;
+  }
+  
+  // friend search specific
+  & section > input {
+    width: 100%;   
+    padding-left: min(20px, 2.5vw);
+    margin-bottom: 5vh;
+  }
+  
+  // header block
+  & section > .blockHeader {
+    display: flex;
+    & > h4 {
+      flex: 1;
+      margin: 0;
+      &:first-of-type {
+        text-align: left;
+      }
+      &:last-of-type {
+        text-align: right;
+      }
+    }
+  }
+}

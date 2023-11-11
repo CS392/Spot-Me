@@ -1,0 +1,24 @@
+@import "../variable";
+
+.friendCard {
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+  }
+  
+  & > div {
+    display: flex;
+    padding: 1rem 1rem;
+    border: solid black 2px;
+    border-radius: 0.5rem;
+    margin-bottom: 2.5vh;
+    transition: all ease-out 0.2s;
+    &:hover {
+      border: solid $primary-color 2px;
+    }
+    
+    & > div {
+      flex: 1;
+    }
+  }
+}

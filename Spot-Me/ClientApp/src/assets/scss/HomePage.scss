@@ -2,31 +2,29 @@
 
 section {
   text-align: center;
-  width: 80vw;
-  justify-content: center;
-  align-content: center;
-}
-
-h2 {
-  text-align: center;
+  width: min(80vw, 50rem);
 }
 
 .welcome {
   border-radius: 0.25rem;
   border: solid 2px black;
+  width: min(40rem, 60vw);
   padding: 1rem;
-  width: 60vw !important;
-  margin: auto;
+  margin: 5vh auto auto;
+  // visibility: hidden;
+  // display: none !important;
 }
 
 .selections {
   display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
   margin: 2.5vh auto auto;
-
   & > button {
     width: auto;
     padding: 0.5rem 1rem;
-    margin: 0.5rem;
+    margin: 0.25rem;
   }
 }
 
