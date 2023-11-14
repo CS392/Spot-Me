@@ -1,3 +1,4 @@
+using Spot_Me.Services;
 using SpotMe.Data;
 using SpotMe.Services;
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.Configure<DatabaseSettings>(
 
 builder.Services.AddSingleton<UserServices>();
 builder.Services.AddSingleton<GoogleMapApiService>();
+builder.Services.AddSingleton<ExerciseApiService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
