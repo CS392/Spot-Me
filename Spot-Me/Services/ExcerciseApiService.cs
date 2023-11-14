@@ -24,7 +24,7 @@ namespace Spot_Me.Services
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
-
+                
                 Console.WriteLine("API Response: " + responseBody);
 
                 return responseBody;

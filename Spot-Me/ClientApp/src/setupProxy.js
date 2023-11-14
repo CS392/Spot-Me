@@ -8,6 +8,7 @@ const context =  [
   "/weatherforecast",
   "/api/user",
   "/api/map",
+  "/api/excerciseDB",
   "/api/geolocate"
 ];
 
