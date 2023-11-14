@@ -11,7 +11,7 @@ builder.Services.Configure<DatabaseSettings>(
 builder.Services.AddSingleton<UserServices>();
 builder.Services.AddSingleton<GoogleMapApiService>();
 builder.Services.AddSingleton<ExerciseApiService>();
-
+builder.Services.AddSingleton<GeolocationService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
