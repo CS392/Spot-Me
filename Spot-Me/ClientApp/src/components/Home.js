@@ -9,9 +9,25 @@ export class Home extends Component {
         super(props);
         this.state = {
             users: {},
-            excercise: {},
+            exercise: 'back' 
         };
     }
+
+    handleExerciseClick = async (exerciseType) => {
+        this.setState({ exercise: exerciseType }); 
+
+        try {
+            const response = await fetch(`https://localhost:7229/api/excerciseDB/data?type=${exerciseType}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            this.refs.childComponent.setState({ exercises: data });
+        } catch (error) {
+            console.error("Error fetching exercise data:", error.message);
+        }
+    };
 
     componentDidMount() {
         fetch('https://localhost:7229/api/map/places/nearby')
@@ -21,19 +37,9 @@ export class Home extends Component {
                 this.setState({ users: data });
             })
             .catch((e) => console.log('Users Fetch Error:', e));
-
-        fetch('https://localhost:7229/api/excerciseDB/data')
-            .then((res) => res.json())
-            .then((data) => {
-                console.log('data', data);
-                this.setState({ excercise: data });
-            })
-            .catch((e) => console.log('Users Fetch Error:', e));
     }
 
     render() {
-        console.log('Users:', this.state.users);
-        console.log('Exercise:', this.state.excercise);
         return (
             <section>
                 <div className={'welcome'}>
@@ -41,11 +47,15 @@ export class Home extends Component {
                 </div>
                 <div className={'selections'}>
                     {exerciseArray.map((exercise) => (
-                        <button key={exercise}>{exercise}</button>
+                        <button key={exercise} onClick={() => this.handleExerciseClick(exercise)}>
+                            {exercise}
+                        </button>
                     ))}
                 </div>
                 <section className={'exerciseTypes'}>
-                    <ExerciseCard users={this.state.excercise} />
+
+                    <ExerciseCard key={this.state.exercise} type={this.state.exercise} ref="childComponent" />
+
                 </section>
             </section>
         );

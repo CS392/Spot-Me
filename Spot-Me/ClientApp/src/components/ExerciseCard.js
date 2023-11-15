@@ -14,7 +14,11 @@ export class ExerciseCard extends Component {
 
     async fetchExerciseData() {
         try {
-            const response = await fetch('https://localhost:7229/api/excerciseDB/data');
+            const { type } = this.props; 
+            
+            const apiUrl = `https://localhost:7229/api/excerciseDB/data?type=${type}`; 
+            console.log("type display", apiUrl);
+            const response = await fetch(apiUrl);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
