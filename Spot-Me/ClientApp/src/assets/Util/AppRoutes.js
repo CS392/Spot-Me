@@ -5,6 +5,7 @@ import SignUp from "../../pages/SignUp";
 import {FriendList} from "../../pages/FriendList";
 import {FriendPage} from "../../pages/FriendPage";
 import {TrackerPage} from "../../pages/TrackerPage";
+import {ProfilePage} from "../../pages/ProfilePage";
 
 const AppRoutes = [
   {
@@ -26,6 +27,10 @@ const AppRoutes = [
   {
     path: '/tracker',
     element: <TrackerPage/>
+  },
+  {
+    path: '/profile',
+    element: <ProfilePage/>
   },
   {
     path: `/user/*`,
