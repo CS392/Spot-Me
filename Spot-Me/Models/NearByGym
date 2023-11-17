@@ -1,0 +1,31 @@
+namespace SpotMe.Models
+{
+    public class NearbyGymsResponse
+    {
+        public List<Gym> Gyms { get; set; }
+        public class Gym
+        {
+            public GeometryModel Geometry { get; set; }
+            public string Name { get; set; }
+        }
+
+        public class GeometryModel
+        {
+            public LocationModel Location { get; set; }
+        }
+
+        public class LocationModel
+        {
+            public double Lat { get; set; }
+            public double Lng { get; set; }
+        }
+        public class PhotoModel
+        {
+            public int Height { get; set; }
+            public List<string> HtmlAttributions { get; set; }
+            public string PhotoReference { get; set; }
+            public int Width { get; set; }
+        }
+
+    }
+}

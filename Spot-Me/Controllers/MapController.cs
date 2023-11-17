@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using SpotMe.Services;
 using System;
 using System.Threading.Tasks;
+using Newtonsoft.Json; 
+using SpotMe.Models;
 
 namespace SpotMeApi.Controllers
 {
@@ -17,12 +19,8 @@ namespace SpotMeApi.Controllers
         }
 
         [HttpGet("places/nearby")]
-        public async Task<IActionResult> NearbyGyms()
+        public async Task<IActionResult> NearbyGyms([FromQuery] string latitude, [FromQuery] string longitude, [FromQuery] string radius)
         {
-            double latitude = 42.35095; // Example coordinates
-            double longitude = -71.10887;
-            int radius = 1000;
-
             try
             {
                 var response = await _googleMapApiService.GetNearbyGymsAsync(latitude, longitude, radius);

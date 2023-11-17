@@ -1,10 +1,7 @@
 using System;
 using System.Configuration;
+using System.Data.SqlTypes;
 using System.Threading.Tasks;
-using GoogleMapsApi;
-using GoogleMapsApi.Entities.Common;
-using GoogleMapsApi.Entities.PlacesNearBy.Request;
-using GoogleMapsApi.Entities.PlacesNearBy.Response;
 
 namespace SpotMe.Services
 {
@@ -17,24 +14,23 @@ namespace SpotMe.Services
             _apiKey = "AIzaSyCDzY8GN4vjP4cEwoc1Lc5tuQCnpVK2TW0";
         }
 
-        public async Task<PlacesNearByResponse> GetNearbyGymsAsync(double latitude, double longitude, int radius)
+        public async Task<String> GetNearbyGymsAsync(string latitude, string longitude, string radius)
         {
-            var request = new PlacesNearByRequest
+           using (HttpClient client = new HttpClient())
             {
-                ApiKey = _apiKey,
-                Keyword = "gym",
-                Radius = radius,
-                Location = new Location(latitude, longitude),
-            };
+                string apiUrl = $"https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=gym&radius={radius}&location={latitude},{longitude }&key={_apiKey}";
 
-            try
-            {
-                return await GoogleMaps.PlacesNearBy.QueryAsync(request);
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine("Error: " + ex.Message);
-                throw;
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    // Handle errors
+                    return $"Error fetching geolocation: {response.StatusCode}";
+                }
             }
         }
     }

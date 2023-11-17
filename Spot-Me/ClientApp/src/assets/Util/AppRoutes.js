@@ -6,7 +6,7 @@ import {FriendList} from "../../pages/FriendList";
 import {FriendPage} from "../../pages/FriendPage";
 import {TrackerPage} from "../../pages/TrackerPage";
 import {ProfilePage} from "../../pages/ProfilePage";
-
+import MapPage from "../../pages/MapPage";
 const AppRoutes = [
   {
     index: true,
@@ -35,6 +35,10 @@ const AppRoutes = [
   {
     path: `/user/*`,
     element: <FriendPage/>
+  },
+  {
+    path: '/map',
+    element: <MapPage/>
   }
 ];
 
