@@ -1,0 +1,15 @@
+.profileDateCard {
+  flex: 1;
+  border: solid 1px black;
+  border-radius: 0.25rem;
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+  transition: all ease-out 0.25s;
+}
+.profileDateCard:hover {
+  border: solid 1px orange;
+}
+
+/*# sourceMappingURL=ProfileDateCard.css.map */

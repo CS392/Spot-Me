@@ -15,7 +15,7 @@ export class FriendCard extends Component {
                         Profile Picture
                     </div>
                     <div>
-                        random
+                        randomt pu
                     </div>
                     <div> 
                         Status, Last online?

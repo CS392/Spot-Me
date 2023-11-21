@@ -9,12 +9,12 @@
   & > div {
     display: flex;
     padding: 1rem 1rem;
-    border: solid black 2px;
+    border: solid white 1px;
     border-radius: 0.5rem;
     margin-bottom: 2.5vh;
     transition: all ease-out 0.2s;
     &:hover {
-      border: solid $primary-color 2px;
+      border: solid black 1px;
     }
     
     & > div {
