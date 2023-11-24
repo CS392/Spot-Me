@@ -14,7 +14,7 @@ namespace SpotMe.Services
             _apiKey = "AIzaSyCDzY8GN4vjP4cEwoc1Lc5tuQCnpVK2TW0";
         }
 
-        public async Task<String> GetNearbyGymsAsync(string latitude, string longitude, string radius)
+        public async Task<string> GetNearbyGymsAsync(string latitude, string longitude, string radius)
         {
            using (HttpClient client = new HttpClient())
             {
