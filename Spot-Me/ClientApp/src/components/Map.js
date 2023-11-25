@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact from "google-map-react";
 import UserMarker from "./UserMarker";
-export class GoogleMap extends Component {
+export class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +27,6 @@ export class GoogleMap extends Component {
           lng: data.location.lng
         }
       })
-      console.log(data);
       return data;
     } catch (error) {
       console.error("Error fetching exercise data:", error.message);
@@ -55,6 +54,7 @@ export class GoogleMap extends Component {
           nearbyLocations: NearbyGyms
         });
       }
+     
     } catch (error) {
       console.error("Error fetching nearby locations:", error.message);
     }
@@ -65,6 +65,7 @@ export class GoogleMap extends Component {
   }
   render() {
     return (
+
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCDzY8GN4vjP4cEwoc1Lc5tuQCnpVK2TW0" }}
@@ -75,7 +76,20 @@ export class GoogleMap extends Component {
           <UserMarker
             lat={this.state.center.lat}
             lng={this.state.center.lng}
+            name={"USER"}
+            User={true}
           />
+          
+          {this.state.nearbyLocations.map((gym, index) => (
+            <UserMarker
+              key={index}
+              lat={gym.latitude}
+              lng={gym.longitude}
+              name={gym.name}
+
+            />
+            
+          ))}
           
         </GoogleMapReact>
       </div>

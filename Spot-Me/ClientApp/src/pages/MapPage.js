@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import {GoogleMap} from "../components/Map";
+import {Map} from "../components/Map";
 
 export default class MapPage extends Component {
     render() {
         return (
             <>
-                <GoogleMap/>
+                <Map/>
             </>
         )
     }
