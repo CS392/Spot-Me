@@ -9,7 +9,8 @@ const context =  [
   "/api/user",
   "/api/map",
   "/api/excerciseDB",
-  "/api/geolocate"
+  "/api/geolocate",
+  "/api/calendar"
 ];
 
 module.exports = function(app) {

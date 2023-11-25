@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Spot_Me.Services;
 
-
+//not using
 namespace Spot_Me.Models
 {
     public class ExerciseModel

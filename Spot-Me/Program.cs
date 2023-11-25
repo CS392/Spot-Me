@@ -1,3 +1,4 @@
+using Google.Apis.Calendar.v3;
 using Spot_Me.Services;
 using SpotMe.Data;
 using SpotMe.Services;
@@ -12,6 +13,7 @@ builder.Services.AddSingleton<UserServices>();
 builder.Services.AddSingleton<GoogleMapApiService>();
 builder.Services.AddSingleton<ExerciseApiService>();
 builder.Services.AddSingleton<GeolocationService>();
+builder.Services.AddSingleton<CalendarService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
