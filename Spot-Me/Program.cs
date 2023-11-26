@@ -14,6 +14,7 @@ builder.Services.AddSingleton<GoogleMapApiService>();
 builder.Services.AddSingleton<ExerciseApiService>();
 builder.Services.AddSingleton<GeolocationService>();
 builder.Services.AddSingleton<CalendarService>();
+builder.Services.AddSingleton<Calendar>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

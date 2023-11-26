@@ -4,22 +4,18 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
-using Google.Apis.Json;
-using static Google.Apis.Requests.BatchRequest;
 
 namespace Spot_Me.Services
 {
     public class Calendar
     {
-        
         const string SpotmeId = "25c30148c866aaa2319b0654ac370d586f8c2c03b0eac912ebeda41690a61bba@group.calendar.google.com";
 
-        public async  Task <string> GetCalendarData()
+        public async Task<string> GetCalendarData()
         {
-
-
             UserCredential credential;
 
+            // Retrieve user credentials from file
             using (var stream = new System.IO.FileStream("/Users/yuzeng/williamz/Junior Class/CS357/credentials.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
             {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
@@ -30,15 +26,21 @@ namespace Spot_Me.Services
                 );
             }
 
-            //this is for the read function of the app
+            // Initialize CalendarService
             var service = new CalendarService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
                 ApplicationName = "Spot Me"
             });
+
+            // Create request with additional parameters including 'timeMin' and 'timeMax'
             var request = service.Events.List(SpotmeId);
-            request.Fields = "items(summary,start, end)";
-            System.Text.StringBuilder eventDetails = new System.Text.StringBuilder();
+            request.TimeMin = DateTime.Now;
+            request.TimeMax = DateTime.Now.AddDays(7); // Fetch events for the next 7 days
+            request.Fields = "items(summary,start,end)";
+
+            // Execute request and process response
+            var eventDetails = new System.Text.StringBuilder();
             var response = await request.ExecuteAsync();
             foreach (var item in response.Items)
             {

@@ -20,7 +20,17 @@ export class ProfilePage extends Component {
             console.log(this.state.dateList[i]);
         }
     }
-    
+    componentDidMount() {
+        fetch('https://localhost:7229/api/calendar/data')
+            .then((res) => res.json())
+            .then((data) => {
+                console.log('Users:', data);
+                this.setState({ users: data });
+            })
+            .catch((e) => console.log('Users Fetch Error:', e));
+    }
+
+
     render() {
         return (
             <>
