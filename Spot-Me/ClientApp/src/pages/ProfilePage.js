@@ -21,10 +21,12 @@ export class ProfilePage extends Component {
         }
     }
     componentDidMount() {
-        fetch('https://localhost:7229/api/calendar/data')
-            .then((res) => res.json())
+        fetch('https://localhost:7229/api/calendar/credentials')
             .then((data) => {
-                console.log('Users:', data);
+                if (!data.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log('Users:', data.text());
                 this.setState({ users: data });
             })
             .catch((e) => console.log('Users Fetch Error:', e));
