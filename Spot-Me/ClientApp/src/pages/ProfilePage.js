@@ -13,24 +13,53 @@ export class ProfilePage extends Component {
             tmpDateList.push(tmpDate);
         }
         this.state = {
-            dateList: tmpDateList
+            dateList: tmpDateList,
+            dateData: []
         }
         
         for (let i = 0; i < this.state.dateList.length; i ++) {
             console.log(this.state.dateList[i]);
         }
+        
     }
+
     componentDidMount() {
         fetch('https://localhost:7229/api/calendar/credentials')
-            .then((data) => {
-                if (!data.ok) {
+            .then((res) => {
+                if (!res.ok) {
                     throw new Error('Network response was not ok');
                 }
-                console.log('Users:', data.text());
-                this.setState({ users: data });
+                return res.text(); 
             })
-            .catch((e) => console.log('Users Fetch Error:', e));
+            .then((data) => {
+                if (data.trim() === '') {
+                    console.log('No upcoming events');
+                    
+                } else {
+                    console.log('Upcoming events found');
+                    console.log('Users:', data);
+
+                    const lines = data.trim().split('\n');
+                    const tupleArray = [];
+
+                    for (let i = 0; i < lines.length; i += 3) {
+                        const activity = lines[i].split(': ')[1]?.trim() || 'Unknown Activity';
+                        const date = lines[i + 1].split(': ')[1]?.trim() || 'Unknown Date';
+                        tupleArray.push([date, activity]);
+                    }
+
+                    console.log('Tuple Array:', tupleArray);
+                    this.setState({ dateData: tupleArray })
+                    console.log('TArray:', this.state.dateData);
+
+
+                    // You can use tupleArray in your application as needed
+                    // For example: this.setState({ tupleData: tupleArray });
+                }
+            })
+            .catch((error) => console.log('Users Fetch Error:', error));
     }
+
 
 
     render() {
@@ -50,6 +79,10 @@ export class ProfilePage extends Component {
                         <h4> First Name: </h4>
                         <h4> Last Name: </h4>
                         <h4> Email: </h4>
+                        <h4> Recent Workout: {this.state.dateData.map((type) => {
+                            return <span style={{ fontSize: '12px' }}>{type[1] + " "}</span>;
+                        })}</h4>
+
                     </div>
                 </section>
             </>

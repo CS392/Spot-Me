@@ -20,7 +20,7 @@ namespace Spot_Me.Controllers
         {
             string res = await _calendarService.GetCalendarData();
 
-            return Ok("res" + res);
+            return Ok( res);
         }
 
         [HttpGet("data")]
