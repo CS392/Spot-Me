@@ -53,8 +53,7 @@ export class ProfilePage extends Component {
                     console.log('TArray:', this.state.dateData);
 
 
-                    // You can use tupleArray in your application as needed
-                    // For example: this.setState({ tupleData: tupleArray });
+                
                 }
             })
             .catch((error) => console.log('Users Fetch Error:', error));
