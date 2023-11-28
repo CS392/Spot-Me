@@ -53,7 +53,7 @@ namespace SpotMe.Controllers
             }
             updatedUser.Id = user.Id;
             await _userServices.UpdateAsync(id, updatedUser);
-            return Ok("Updated Successfully");
+            return Ok(new{message = "Updated Successfully"});
         }
 
         // DELETE api/user/6549c6c2efe126880fd5a266
@@ -68,5 +68,18 @@ namespace SpotMe.Controllers
             await _userServices.DeleteAsync(id);
             return Ok("Deleted Successfully");
         }
+
+        // GET api/user/username/{username}
+        [HttpGet("username/{username}")]
+        public async Task<ActionResult<User>> GetByUsername(string username)
+        {
+            User user = await _userServices.GetByUsernameAsync(username);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return user;
+        }
+
     }
 }
