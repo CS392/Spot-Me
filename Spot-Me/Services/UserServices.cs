@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using SpotMe.Data;
@@ -46,6 +47,11 @@ namespace SpotMe.Services
         public async Task DeleteAsync(string id)
         {
             await _userCollection.DeleteOneAsync(user => user.Id == id);
+        }
+
+        public async Task<User> GetByUsernameAsync(string username)
+        {
+            return await _userCollection.Find(user => user.UserName == username).FirstOrDefaultAsync();
         }
         
     }

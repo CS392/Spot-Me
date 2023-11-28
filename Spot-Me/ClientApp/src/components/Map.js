@@ -10,7 +10,8 @@ export class Map extends Component {
         lng: 0
       },
       zoom: 15,
-      nearbyLocations: []
+      nearbyLocations: [],
+      user: {}
     };
   }
   async getLocation(){
@@ -32,11 +33,39 @@ export class Map extends Component {
       console.error("Error fetching exercise data:", error.message);
     }
   }
+
+  async updateUser (id, updatedUser) {
+    try {
+        const response = await fetch(`https://localhost:7229/api/user/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(updatedUser),
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Error updating user:", error.message);
+    }
+  };
+
   async getNearbyLocations() {
     try {
       // Wait for getLocation to complete and get the location data
       const locationData = await this.getLocation();
       // Check if locationData is available before proceeding
+      const user = localStorage.getItem('user');
+      await fetch(`https://localhost:7229/api/user/username/${user}`)
+          .then((res) => res.json())
+          .then((data) => {
+              data.location.latitude = locationData.location.lat;
+              data.location.longitude = locationData.location.lng;
+              this.setState({ user: data });
+              this.updateUser(data.id, data);
+          })
+          .catch((e) => console.log('Users Fetch Error:', e));
       if (locationData) {
         const apiUrl = `https://localhost:7229/api/map/places/nearby?latitude=${locationData.location.lat}&longitude=${locationData.location.lng}&radius=1000`;
         const response = await fetch(apiUrl);
@@ -61,7 +90,7 @@ export class Map extends Component {
   }
   
   componentDidMount() {
-    this.getNearbyLocations();  
+    this.getNearbyLocations();
   }
   render() {
     return (

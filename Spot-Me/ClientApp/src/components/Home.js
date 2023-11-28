@@ -8,7 +8,7 @@ export class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: {},
+            user: {},
             exercise: 'back' 
         };
     }
@@ -30,11 +30,12 @@ export class Home extends Component {
     };
 
     componentDidMount() {
-        fetch('https://localhost:7229/api/map/places/nearby')
+        const user = localStorage.getItem('user');
+        fetch(`https://localhost:7229/api/user/username/${user}`)
             .then((res) => res.json())
             .then((data) => {
-                console.log('Users:', data);
-                this.setState({ users: data });
+                console.log('User:', data);
+                this.setState({ user: data });
             })
             .catch((e) => console.log('Users Fetch Error:', e));
     }
