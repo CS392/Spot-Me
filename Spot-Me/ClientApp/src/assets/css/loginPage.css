@@ -33,13 +33,15 @@ button {
   border-radius: 0.25rem;
   width: 70%;
   padding: 0.5rem 0;
-  border: solid 1px white;
   margin: 5vh auto auto;
-}
-button:hover {
   background: white;
   color: black;
   border: solid 1px black;
+}
+button:hover {
+  border: solid 1px white;
+  background: darkorange;
+  color: white;
 }
 
 /*# sourceMappingURL=loginPage.css.map */

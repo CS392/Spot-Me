@@ -1,5 +1,7 @@
 @import '../variable';
 
-div {
-  width: 60vw;
+.exercise-list {
+  & > div {
+    cursor: pointer;
+  }
 }

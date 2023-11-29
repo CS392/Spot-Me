@@ -1,5 +1,5 @@
-div {
-  width: 60vw;
+.exercise-list > div {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=Exercise.css.map */

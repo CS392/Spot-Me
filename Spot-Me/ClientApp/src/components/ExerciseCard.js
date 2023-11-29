@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../assets/css/ComponentScss/Exercise.css'
 
 export class ExerciseCard extends Component {
     constructor(props) {

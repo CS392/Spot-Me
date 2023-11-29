@@ -44,7 +44,7 @@ export default class Login extends Component {
                         <h4> User Name </h4>
                         <input type={"text"} name="username" onChange={this.handleChange} placeholder={"User Name"}/>
                         <h4> Password </h4>
-                        <input type={"text"} name="password" onChange={this.handleChange} placeholder={"Password"}/>
+                        <input type={"password"} name="password" onChange={this.handleChange} placeholder={"Password"}/>
                     </div>
                     <button onClick={this.handleSignIn}> Login </button>
                     <hr/>

@@ -5,14 +5,64 @@ section {
   width: min(80vw, 50rem);
 }
 
-.welcome {
-  border-radius: 0.25rem;
-  border: solid 2px black;
-  width: min(40rem, 60vw);
+.homeH1 {
+  font-weight: bolder;
+  font-size: 4rem;
+  color: white;
+  -webkit-text-stroke-color: darkorange;
+  -webkit-text-stroke-width: 4px;
+}
+
+.homeIntroduction {
+  display: flex;
+  margin: 20vh 10vh 5vh;
+  & > div {
+    text-align: left;
+    display: grid;
+    place-items: center;
+    flex: 1;
+    & h1 {
+      font-weight: bolder;
+      color: white;
+      -webkit-text-stroke-color: darkorange;
+      -webkit-text-stroke-width: 3px;
+      font-size: 3rem;
+    }
+    & > img {
+      width: 15vw;
+    }
+  }
+}
+
+.homeRedirect {
+  width: 90%;
+  margin-bottom: 20vh;
+  font-weight: bold;
   padding: 1rem;
-  margin: 5vh auto auto;
-  // visibility: hidden;
-  // display: none !important;
+  font-size: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 10px 10px;
+}
+
+.recommendation {
+  display: flex;
+  margin-bottom: 5rem;
+  & > div {
+    & > div {
+      border-radius: 0.4rem;
+      border: dashed 3px white;
+      padding: 2rem 0.5rem;
+    }
+    padding: 0.5rem;
+    flex: 1;
+    border-radius: 0.4rem;
+    color: white;
+    border: darkorange solid 1px;
+    background: darkorange;
+    margin: 0 10px;
+    display: grid;
+    place-items: center;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 5px 10px;
+  }
 }
 
 .selections {
@@ -20,11 +70,21 @@ section {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  margin: 2.5vh auto auto;
+  margin: 2.5vh auto 20vh;
   & > button {
-    width: auto;
-    padding: 0.5rem 1rem;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 1.25rem;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 5px 10px;
+    border-top: 5px darkorange solid;
+    width: 12.5vw;
+    padding: 1rem 2rem;
     margin: 0.25rem;
+    &:hover {
+      border: none;
+      border-top: 5px darkorange solid;
+    }
   }
 }
 
