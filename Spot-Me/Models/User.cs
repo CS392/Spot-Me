@@ -19,6 +19,9 @@ namespace SpotMe.Models
         [BsonElement("friends")]
         public List<string> Friends { get; set; } = new List<string>();
 
+        [BsonElement("pending")]
+        public List<string> Pending { get; set; } = new List<string>();
+
         [BsonElement("exercise")]
         public Dictionary<string, List<string>> Exercise { get; set; } = new Dictionary<string, List<string>>();
 

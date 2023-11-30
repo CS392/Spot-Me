@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import UserMarker from "./UserMarker";
+import { updateUser } from "../assets/Util/Util";
 export class Map extends Component {
   constructor(props) {
     super(props);
@@ -34,23 +35,6 @@ export class Map extends Component {
     }
   }
 
-  async updateUser (id, updatedUser) {
-    try {
-        const response = await fetch(`https://localhost:7229/api/user/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-            },
-            body: JSON.stringify(updatedUser),
-        });
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-    } catch (error) {
-        console.error("Error updating user:", error.message);
-    }
-  };
-
   async getNearbyLocations() {
     try {
       // Wait for getLocation to complete and get the location data
@@ -63,7 +47,7 @@ export class Map extends Component {
               data.location.latitude = locationData.location.lat;
               data.location.longitude = locationData.location.lng;
               this.setState({ user: data });
-              this.updateUser(data.id, data);
+              updateUser(data.id, data);
           })
           .catch((e) => console.log('Users Fetch Error:', e));
       if (locationData) {
