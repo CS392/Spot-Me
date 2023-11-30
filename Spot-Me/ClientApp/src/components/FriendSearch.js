@@ -97,8 +97,8 @@ export class FriendSearch extends Component {
                     return (
                         <div key={idx} className={'pendingFriends'}>
                             <p>{userName}</p>
-                            <button className={'acceptFriends'}  onClick={() => this.handleAccept(userName)}>Accept</button>
-                            <button className={'declineFriends'} onClick={() => this.handleDecline(userName)}>Decline</button>
+                            <button className={'buttonGreen'}  onClick={() => this.handleAccept(userName)}>Accept</button>
+                            <button className={'buttonRed'} onClick={() => this.handleDecline(userName)}>Decline</button>
                         </div>
                     )
                 })}

@@ -10,16 +10,11 @@ export class FriendCard extends Component {
     render() {
         return (
             <div className={"friendCard"} onClick={this.redirect}>
+                {/* Map user information here & see if anyone request Lift */}
                 <div>
-                    <div>
-                        Profile Picture
-                    </div>
-                    <div>
-                        randomt pu
-                    </div>
-                    <div> 
-                        Status, Last online?
-                    </div>
+                    <p> Friend Name</p>
+                    <button className={'buttonRed'}> Request </button>
+                    <button className={'buttonGreen'}> Help </button>
                 </div>
             </div>
         );      

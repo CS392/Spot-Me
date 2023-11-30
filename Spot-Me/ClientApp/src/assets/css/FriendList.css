@@ -30,11 +30,11 @@
   margin: 0.2rem;
 }
 
-.acceptFriends:hover {
+.buttonGreen:hover {
   background: #00a100;
 }
 
-.declineFriends:hover {
+.buttonRed:hover {
   background: #ff5d5d;
 }
 
