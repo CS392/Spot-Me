@@ -15,7 +15,7 @@ export class FriendSearch extends Component {
         checkUserStatus();
         getUserByUsername(localStorage.getItem('user')).then((res) => {
             this.setState({user: res})
-        }),
+        })
     }
     
     toggleMainVisibility = () => {
