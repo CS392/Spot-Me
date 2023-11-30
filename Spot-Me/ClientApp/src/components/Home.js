@@ -10,7 +10,8 @@ export class Home extends Component {
         super(props);
         this.state = {
             user: {},
-            exercise: 'back' 
+            exercise: 'back',
+            dateData: []
         };
     }
 
@@ -39,6 +40,44 @@ export class Home extends Component {
                 this.setState({ user: data });
             })
             .catch((e) => console.log('Users Fetch Error:', e));
+
+
+
+        //Calendar code
+        fetch('https://localhost:7229/api/calendar/credentials')
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return res.text();
+            })
+            .then((data) => {
+                if (data.trim() === '') {
+                    console.log('No upcoming events');
+
+                } else {
+                    console.log('Upcoming events found');
+                    console.log('Users:', data);
+
+                    const lines = data.trim().split('\n');
+                    const tupleArray = [];
+
+                    for (let i = 0; i < lines.length; i += 3) {
+                        const activity = lines[i].split(': ')[1]?.trim() || 'Unknown Activity';
+                        const date = lines[i + 1].split(': ')[1]?.trim() || 'Unknown Date';
+                        tupleArray.push([date, activity]);
+                    }
+
+                    console.log('Tuple Array:', tupleArray);
+                    this.setState({ dateData: tupleArray })
+                    console.log('TArray:', this.state.dateData);
+
+
+
+                }
+            })
+            .catch((error) => console.log('Users Fetch Error:', error));
+
     }
 
     render() {
@@ -95,6 +134,12 @@ export class Home extends Component {
                 
                 <section className={'exerciseTypes'}>
                     <ExerciseCard key={this.state.exercise} type={this.state.exercise} ref="childComponent" />
+                </section>
+
+                <section className={'calendar'}>
+                    <h4> Upcoming Events: {this.state.dateData.map((type) => {
+                        return <h3 style={{ fontSize: '12px' }}>{type[0]+ "  "+type[1] + " "}</h3>;
+                    })}</h4>
                 </section>
             </section>
         );
