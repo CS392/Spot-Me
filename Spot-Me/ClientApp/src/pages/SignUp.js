@@ -56,7 +56,7 @@ export default class SignUp extends Component {
         .then(res => res.json())
         .catch(error => console.log(error));
         alert("Account created successfully");
-        window.location.href = "/";
+        window.location.href = "/login";
     }
 
     handleChange = (event) => {

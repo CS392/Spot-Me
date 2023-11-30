@@ -6,7 +6,8 @@ export class FriendSearch extends Component {
         super(props);
         this.state = {
             search: '',
-            user: {}
+            user: {},
+            showMain: true
         }
     }
 
@@ -14,6 +15,12 @@ export class FriendSearch extends Component {
         checkUserStatus();
         getUserByUsername(localStorage.getItem('user')).then((res) => {
             this.setState({user: res})
+        }),
+    }
+    
+    toggleMainVisibility = () => {
+        this.setState({
+            showMain: !this.state.showMain
         })
     }
 
@@ -72,33 +79,35 @@ export class FriendSearch extends Component {
         }
     }
 
-
     render() {
         return (
             <section style={{marginTop: '0px'}}>
                 <h4> Add a friend</h4>
-                <input 
-                    type={"text"}
-                    placeholder={"Type in their username"}
-                    value={this.state.search}
-                    onChange={this.handleChange}
+                <div className={'addFriend'}>
+                    <input
+                        type={"text"}
+                        placeholder={"Type in their username"}
+                        value={this.state.search}
+                        onChange={this.handleChange}
                     />
-                <button onClick={this.handleAddFriend}>Add</button>
+                    <button onClick={this.handleAddFriend}>Add</button>
+                </div>
 
-                <h4> Friend Requests</h4>
+                <h4 onClick={this.toggleMainVisibility}> Friend Requests</h4>
+                
+                <hr/>
                 <div>
 
-                {this.state.user &&     this.state.user.pending && this.state.user.pending.map((userName, idx) => {
+                {this.state.showMain && this.state.user.pending && this.state.user.pending.map((userName, idx) => {
                     return (
-                        <div key={idx}>
+                        <div key={idx} className={'pendingFriends'}>
                             <p>{userName}</p>
-                            <button onClick={() => this.handleAccept(userName)}>Accept</button>
-                            <button onClick={() => this.handleDecline(userName)}>Decline</button>
+                            <button className={'acceptFriends'}  onClick={() => this.handleAccept(userName)}>Accept</button>
+                            <button className={'declineFriends'} onClick={() => this.handleDecline(userName)}>Decline</button>
                         </div>
                     )
                 })}
                 </div>
-                
             </section>
         );
     }

@@ -1,13 +1,49 @@
+.addFriend {
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  margin-bottom: 5vh;
+}
+.addFriend > input {
+  flex: 8;
+  margin: auto 4vw auto auto;
+}
+.addFriend > button {
+  height: 5vh;
+  flex: 1;
+  margin: auto;
+}
+
+.pendingFriends {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0;
+  place-items: center;
+}
+.pendingFriends > p {
+  flex: 8;
+  text-align: left;
+}
+.pendingFriends > button {
+  flex: 2;
+  margin: 0.2rem;
+}
+
+.acceptFriends:hover {
+  background: #00a100;
+}
+
+.declineFriends:hover {
+  background: #ff5d5d;
+}
+
 .friendList {
   margin-top: 5vh;
+  cursor: pointer;
 }
 .friendList section > h4 {
   text-align: left;
-}
-.friendList section > input {
-  width: 100%;
-  padding-left: min(20px, 2.5vw);
-  margin-bottom: 5vh;
 }
 .friendList section > .blockHeader {
   display: flex;
