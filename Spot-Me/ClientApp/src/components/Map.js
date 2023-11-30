@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import UserMarker from "./UserMarker";
-import { updateUser } from "../assets/Util/Util";
+import { updateUser, checkUserStatus } from "../assets/Util/Util";
 export class Map extends Component {
   constructor(props) {
     super(props);
@@ -74,6 +74,7 @@ export class Map extends Component {
   }
   
   componentDidMount() {
+    checkUserStatus();
     this.getNearbyLocations();
   }
   render() {

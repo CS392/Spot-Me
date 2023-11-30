@@ -1,16 +1,21 @@
 import React, {Component} from "react";
-import {getAllUsers, getUserByUsername, updateUser} from "../assets/Util/Util";
+import {getAllUsers, getUserByUsername, updateUser, checkUserStatus} from "../assets/Util/Util";
 
 export class FriendSearch extends Component {
     constructor(props){
         super(props);
         this.state = {
             search: '',
-            user: getUserByUsername(localStorage.getItem('user')).then((res) => {
-                this.setState({user: res})
-            }),
+            user: {},
             showMain: true
         }
+    }
+
+    componentDidMount() {
+        checkUserStatus();
+        getUserByUsername(localStorage.getItem('user')).then((res) => {
+            this.setState({user: res})
+        }),
     }
     
     toggleMainVisibility = () => {
@@ -24,7 +29,7 @@ export class FriendSearch extends Component {
             search: event.target.value
         })
         console.log(this.state.search)
-        console.log(this.state.user)
+        console.log(this.state)
     }
 
     handleAddFriend = async () => {
