@@ -6,6 +6,7 @@ import {FriendList} from "../../pages/FriendList";
 import {FriendPage} from "../../pages/FriendPage";
 import {TrackerPage} from "../../pages/TrackerPage";
 import {ProfilePage} from "../../pages/ProfilePage";
+import {ExercisePage} from "../../pages/ExercisePage";
 import MapPage from "../../pages/MapPage";
 const AppRoutes = [
   {
@@ -39,7 +40,11 @@ const AppRoutes = [
   {
     path: '/map',
     element: <MapPage/>
-  }
+  },
+  {
+    path: '/exercises',
+    element: <ExercisePage/>
+  },
 ];
 
 export default AppRoutes;

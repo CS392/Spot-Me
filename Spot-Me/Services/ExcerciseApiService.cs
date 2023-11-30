@@ -16,7 +16,7 @@ namespace Spot_Me.Services
                     Method = HttpMethod.Get,
                     RequestUri = new Uri($"https://exercisedb.p.rapidapi.com/exercises/bodyPart/{exerciseType}?limit=10")
                 };
-                request.Headers.Add("X-RapidAPI-Key", "f69f2da5c1msh1331231abd4a573p1d8d45jsn4af60eda3f35");
+                request.Headers.Add("X-RapidAPI-Key", "79db28dddemsha0eb0c5285ab1a6p174df6jsnec6cbf4f9836");
                 request.Headers.Add("X-RapidAPI-Host", "exercisedb.p.rapidapi.com");
 
                 HttpResponseMessage response = await client.SendAsync(request);
