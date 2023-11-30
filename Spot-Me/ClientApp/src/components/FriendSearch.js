@@ -1,15 +1,20 @@
 import React, {Component} from "react";
-import {getAllUsers, getUserByUsername, updateUser} from "../assets/Util/Util";
+import {getAllUsers, getUserByUsername, updateUser, checkUserStatus} from "../assets/Util/Util";
 
 export class FriendSearch extends Component {
     constructor(props){
         super(props);
         this.state = {
             search: '',
-            user: getUserByUsername(localStorage.getItem('user')).then((res) => {
-                this.setState({user: res})
-            })
+            user: {}
         }
+    }
+
+    componentDidMount() {
+        checkUserStatus();
+        getUserByUsername(localStorage.getItem('user')).then((res) => {
+            this.setState({user: res})
+        })
     }
 
     handleChange = (event) => {
@@ -17,7 +22,7 @@ export class FriendSearch extends Component {
             search: event.target.value
         })
         console.log(this.state.search)
-        console.log(this.state.user)
+        console.log(this.state)
     }
 
     handleAddFriend = async () => {
@@ -83,7 +88,7 @@ export class FriendSearch extends Component {
                 <h4> Friend Requests</h4>
                 <div>
 
-                {this.state.user.pending && this.state.user.pending.map((userName, idx) => {
+                {this.state.user &&     this.state.user.pending && this.state.user.pending.map((userName, idx) => {
                     return (
                         <div key={idx}>
                             <p>{userName}</p>

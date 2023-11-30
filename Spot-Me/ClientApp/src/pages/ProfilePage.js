@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {ProfileDateCard} from "../components/ProfileDateCard";
 import '../assets/css/ProfilePage.css';
+import { checkUserStatus } from "../assets/Util/Util";
 
 export class ProfilePage extends Component {
     constructor(props) {
@@ -24,6 +25,7 @@ export class ProfilePage extends Component {
     }
 
     componentDidMount() {
+        checkUserStatus();
         fetch('https://localhost:7229/api/calendar/credentials')
             .then((res) => {
                 if (!res.ok) {
