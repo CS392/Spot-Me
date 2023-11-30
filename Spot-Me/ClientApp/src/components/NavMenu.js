@@ -32,21 +32,37 @@ export class NavMenu extends Component {
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/"> Home </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/tracker"> Tracker </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/friends"> Friends </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/profile"> Profile </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/map"> Map </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/" onClick={logout}> Logout </NavLink>
-              </NavItem>
+              {
+                localStorage.getItem("user") === null &&
+                  <>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/login"> Login </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/signup"> Sign Up </NavLink>
+                    </NavItem>
+                  </>
+              }
+              {
+                localStorage.getItem("user") !== null &&
+                  <>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/tracker"> Tracker </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/friends"> Friends </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/profile"> Profile </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/map"> Map </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/" onClick={logout}> Logout </NavLink>
+                    </NavItem>
+                  </>
+              }
             </ul>
           </Collapse>
         </Navbar>

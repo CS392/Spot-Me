@@ -8,12 +8,8 @@ export class FriendList extends Component {
         return (
             <section className={'friendList'}> 
                 <FriendSearch/>
-                <FriendStatusBlock 
-                    header={"Suggestion"}/>
                 <FriendStatusBlock
-                    header={"Online"}/>
-                <FriendStatusBlock
-                    header={"Offline"}/>
+                    header={"Friends"}/>
             </section>
         );
     }
