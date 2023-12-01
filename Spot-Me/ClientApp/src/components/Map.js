@@ -12,7 +12,8 @@ export class Map extends Component {
       },
       zoom: 15,
       nearbyLocations: [],
-      user: {}
+      user: {},
+      friendLocations: []
     };
   }
   async getLocation(){
@@ -37,19 +38,39 @@ export class Map extends Component {
 
   async getNearbyLocations() {
     try {
-      // Wait for getLocation to complete and get the location data
+      // get lat + long of user
       const locationData = await this.getLocation();
-      // Check if locationData is available before proceeding
+
+      // get user data
       const user = localStorage.getItem('user');
-      await fetch(`https://localhost:7229/api/user/username/${user}`)
-          .then((res) => res.json())
-          .then((data) => {
-              data.location.latitude = locationData.location.lat;
-              data.location.longitude = locationData.location.lng;
-              this.setState({ user: data });
-              updateUser(data.id, data);
-          })
-          .catch((e) => console.log('Users Fetch Error:', e));
+      const res = await fetch(`https://localhost:7229/api/user/username/${user}`);
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      // update user data with lat + long
+      const data = await res.json();
+      data.location.latitude = locationData.location.lat;
+      data.location.longitude = locationData.location.lng;
+      this.setState({ user: data });
+      updateUser(data.id, data);
+
+      // get friend locations
+      const friends = data.friends;
+      for (let i = 0; i < friends.length; i++) {
+        const friend = await fetch(`https://localhost:7229/api/user/username/${friends[i]}`);
+        if (!friend.ok) {
+          throw new Error(`HTTP error! Status: ${friend.status}`);
+        }
+        const friendData = await friend.json();
+        const friendLocationData = {
+          name:friendData.userName,
+          latitude: friendData.location.latitude,
+          longitude: friendData.location.longitude
+        }
+        this.setState({ friendLocations: [...this.state.friendLocations, friendLocationData] });
+      }
+
       if (locationData) {
         const apiUrl = `https://localhost:7229/api/map/places/nearby?latitude=${locationData.location.lat}&longitude=${locationData.location.lng}&radius=1000`;
         const response = await fetch(apiUrl);
@@ -80,7 +101,7 @@ export class Map extends Component {
   render() {
     return (
 
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ height: '85vh', width: '100%'}}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCDzY8GN4vjP4cEwoc1Lc5tuQCnpVK2TW0" }}
           defaultCenter={{lat : 0, long : 0}}
@@ -104,7 +125,16 @@ export class Map extends Component {
             />
             
           ))}
-          
+
+          {this.state.friendLocations.map((friend, index) => (
+            <UserMarker
+              key={index}
+              lat={friend.latitude}
+              lng={friend.longitude}
+              name={friend.name}
+              friend={true}
+            />
+          ))}
         </GoogleMapReact>
       </div>
     );

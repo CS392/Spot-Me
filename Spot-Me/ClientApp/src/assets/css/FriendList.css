@@ -5,12 +5,12 @@
   margin-bottom: 5vh;
 }
 .addFriend > input {
-  flex: 8;
-  margin: auto 4vw auto auto;
+  flex: 9;
+  margin: auto 0.4rem auto auto;
 }
 .addFriend > button {
   height: 5vh;
-  flex: 1;
+  flex: 2;
   margin: auto;
 }
 
@@ -47,6 +47,7 @@
 }
 .friendList section > .blockHeader {
   display: flex;
+  margin-top: 5vh;
 }
 .friendList section > .blockHeader > h4 {
   flex: 1;

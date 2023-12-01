@@ -2,17 +2,27 @@ import React, {Component} from "react";
 import {FriendSearch} from "../components/FriendSearch";
 import '../assets/css/FriendList.css'
 import {FriendStatusBlock} from "../components/FriendStatusBlock";
-import { checkUserStatus } from "../assets/Util/Util";
+import { checkUserStatus, getUserByUsername } from "../assets/Util/Util";
 export class FriendList extends Component {
-    onComponentDidMount() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {}
+        }
+    }
+
+    async componentDidMount() {
         checkUserStatus();
+        const name = localStorage.getItem('user');
+        const userData = await getUserByUsername(name);
+        this.setState({user: userData});
     }
     render() {
         return (
             <section className={'friendList'}> 
-                <FriendSearch/>
+                <FriendSearch user={this.state.user}/>
                 <FriendStatusBlock
-                    header={"Friends"}/>
+                    header={"Friends"} user={this.state.user}/>
             </section>
         );
     }

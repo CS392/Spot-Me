@@ -6,16 +6,12 @@
 }
 .friendCard > div {
   display: flex;
-  padding: 1rem 1rem;
   border: solid white 1px;
   border-radius: 0.5rem;
   margin-bottom: 2.5vh;
   transition: all ease-out 0.2s;
   justify-content: center;
   align-content: center;
-}
-.friendCard > div:hover {
-  border: solid black 1px;
 }
 .friendCard > div > p {
   flex: 8;
@@ -24,7 +20,7 @@
 }
 .friendCard > div > button {
   flex: 2;
-  margin: 0;
+  margin: 0.2rem;
 }
 
 /*# sourceMappingURL=FriendCard.css.map */

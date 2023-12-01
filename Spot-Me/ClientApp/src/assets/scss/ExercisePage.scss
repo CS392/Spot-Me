@@ -2,6 +2,7 @@
 
 .exerciseSelect {
   height: 25vh; 
+  text-transform: capitalize;
 }
 
 .addDiv {
@@ -11,11 +12,28 @@
   width: 60vw;
   & > button {
     margin: 0 0.2rem;
+    text-transform: capitalize;
   }
 }
 
 .exerciseContainer {
   margin: 2.5vh 0;
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 1rem 0;
+    & > button {
+      flex: 1;
+      margin: auto;
+    }
+    & > p {
+      flex: 8;
+      text-transform: capitalize;
+      padding-left: 1rem;
+      margin: auto;
+    }
+  }
 }
 
 .exerciseBtnContainer {

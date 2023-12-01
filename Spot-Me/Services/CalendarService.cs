@@ -34,9 +34,11 @@ namespace Spot_Me.Services
         public async Task<string> GetCalendarData()
         {
             UserCredential credential;
+            var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var credentialsPath = Path.Combine(assemblyDirectory, "Properties", "credentials.json");
 
             // Retrieve user credentials from file
-            using (var stream = new System.IO.FileStream("/Users/yuzeng/williamz/Junior Class/CS357/credentials.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
             {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,

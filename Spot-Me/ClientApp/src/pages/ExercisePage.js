@@ -139,15 +139,18 @@ handleRemoveExercise = (index, bodyPart) => {
             <div className={'exerciseContainer'}>
             {Object.keys(this.state.bodyPartMapping).map((key) => (
             this.state.bodyPartMapping[key].map((exercise, index) => (
-            <li key={index} onClick={() => this.handleRemoveExercise(index,key)}>
-                {exercise}
-            </li>
+                <div key={`${index}-div`}>
+                        <button key={index} className={'buttonRed'} onClick={() => this.handleRemoveExercise(index,key)}> Remove </button>
+                        <p key={`${index}-li`}>
+                    {exercise}
+                        </p>
+            </div>
         ))
     ))}
             </div>
             <div className={'exerciseBtnContainer'}>
               <button className={'appendExerciseBtn'} onClick={this.handleAdd}>Add</button>
-              <button> Submit </button>
+              <button className={'buttonGreen'}> Submit </button>
               <button onClick={() => console.log(this.state)}> test </button>
             </div>
         </div>

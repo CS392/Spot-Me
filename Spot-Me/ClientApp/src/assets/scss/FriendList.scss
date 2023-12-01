@@ -4,12 +4,12 @@
   place-items: center;
   margin-bottom: 5vh;
   & > input {
-    flex: 8;
-    margin: auto 4vw auto auto;
+    flex: 9;
+    margin: auto 0.4rem auto auto;
   }
   & > button {
     height: 5vh;
-    flex: 1;
+    flex: 2;
     margin: auto;
   }
 }
@@ -52,6 +52,7 @@
   // header block
   & section > .blockHeader {
     display: flex;
+    margin-top: 5vh;
     & > h4 {
       flex: 1;
       margin: 0;
