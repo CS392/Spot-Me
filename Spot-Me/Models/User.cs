@@ -43,6 +43,12 @@ namespace SpotMe.Models
 
         [BsonElement("personalBestSquat")] 
         public string PersonalBestSquat = "0";
+        
+        [BsonElement("personalBestDeadlift")] 
+        public string PersonalBestDeadlift = "0";
+        
+        [BsonElement("personalBestBench")] 
+        public string PersonalBestBench = "0";
 
         [BsonElement("location")]
         public Location Location { get; set; } = new Location();
