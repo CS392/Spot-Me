@@ -121,7 +121,7 @@ export default class LandingPage extends Component {
                     </div>
                 </div>
 
-                <h1 className={"homeH1"}> Exercise List</h1>
+                <h1 className={"homeH1"}> Exercise Areas </h1>
 
                 <div className={'selections'}>
                     {exerciseArray.map((exercise) => (
@@ -131,9 +131,9 @@ export default class LandingPage extends Component {
                     ))}
                 </div>
 
-                <section className={'exerciseTypes'}>
-                    <ExerciseCard key={this.state.exercise} type={this.state.exercise} ref="childComponent" />
-                </section>
+                {/*<section className={'exerciseTypes'}>*/}
+                {/*    <ExerciseCard key={this.state.exercise} type={this.state.exercise} ref="childComponent" />*/}
+                {/*</section>*/}
 
                 <section className={'calendar'}>
                     <h4> Upcoming Events: {this.state.dateData.map((type) => {

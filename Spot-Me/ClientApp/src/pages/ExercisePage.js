@@ -104,9 +104,12 @@ export class ExercisePage extends React.Component {
           </Input>
             <div className={'exerciseContainer'}>
               {this.state.choosedExercise.map((exercise, index) => (
-                  <li key={index} onClick={() => this.handleRemoveExercise(index)}>
-                    {exercise.name}
-                  </li>
+                  <div key={`${index}-div`}>
+                    <button key={index} className={'buttonRed'} onClick={() => this.handleRemoveExercise(index)}> Remove </button>
+                    <p key={`${index}-li`}>
+                      {exercise.name}
+                    </p>
+                  </div>
               ))}
             </div>
             <div className={'exerciseBtnContainer'}>

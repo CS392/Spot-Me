@@ -101,7 +101,7 @@ export class Map extends Component {
   render() {
     return (
 
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ height: '85vh', width: '100%'}}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCDzY8GN4vjP4cEwoc1Lc5tuQCnpVK2TW0" }}
           defaultCenter={{lat : 0, long : 0}}
