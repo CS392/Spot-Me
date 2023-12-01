@@ -107,7 +107,7 @@ export class ExercisePage extends React.Component {
             </div>
             <div className={'exerciseBtnContainer'}>
               <button className={'appendExerciseBtn'} onClick={this.handleExerciseSubmission}>Add</button>
-              <button> Submit </button>
+              <button className={'buttonGreen'}> Submit </button>
             </div>
         </div>
       </div>
