@@ -6,13 +6,13 @@ import { checkUserStatus, getUserByUsername } from "../assets/Util/Util";
 export class ProfilePage extends Component {
     constructor(props) {
         super(props);
-
+    
         this.state = {
 
             user: {}
             
         }
-        
+        console.log("user", user);
 
         
     }
