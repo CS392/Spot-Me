@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from "react-router-dom";
 import '../assets/css/ComponentScss/ProfileDateCard.css';
 
 export class ProfileDateCard extends Component {
@@ -10,12 +11,14 @@ export class ProfileDateCard extends Component {
         }
     }
     render() {
+
+        const ExercisePageRoute = `/exercise/${this.state.date.toLocaleDateString().replaceAll("/", '-')}`;
         return (
             <>
-                <div className={'profileDateCard'}>
+                <Link className={'profileDateCard'} to = {ExercisePageRoute}>
                     <p> {this.state.date.toLocaleDateString()}</p>
                     <p>  Exercise Type </p>
-                </div>
+                </Link>
             </>)
     }       
 }

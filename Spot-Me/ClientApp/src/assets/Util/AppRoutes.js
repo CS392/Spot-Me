@@ -44,7 +44,7 @@ const AppRoutes = [
     element: <MapPage/>
   },
   {
-    path: '/exercises',
+    path: '/exercise/*',
     element: <ExercisePage/>
   },
   {
