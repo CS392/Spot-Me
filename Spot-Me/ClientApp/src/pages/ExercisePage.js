@@ -17,12 +17,13 @@ export class ExercisePage extends React.Component {
     this.state = {
       exercises: [],
       choosedExercise: [],
-      selectedExercise: "", // Added selectedExercise state
+      selectedExercise: "", 
+      selectedBodyPart: "",
+      bodyPart:[]
     };
   }
 
   async componentDidMount() {
-    // Fetch initial exercise data when the component mounts
     this.fetchExerciseData();
   }
 
@@ -42,6 +43,7 @@ export class ExercisePage extends React.Component {
 
   updateResult = (exercise) => {
     this.fetchExerciseData(exercise);
+    this.setState({ selectedBodyPart: exercise });
   };
 
   handleExerciseSubmission = () => {
@@ -55,7 +57,10 @@ export class ExercisePage extends React.Component {
       this.setState({
         choosedExercise: [...choosedExercise, selectedObj],
         selectedExercise: "",
+        bodyPart: [...this.state.bodyPart, this.state.selectedBodyPart],
+        selectedBodyPart: ""
       });
+
     }
   };
   handleRemoveExercise = (index) => {
@@ -114,6 +119,11 @@ export class ExercisePage extends React.Component {
                 <Button>Submit</Button>
             </Col>
           </FormGroup>
+          <h1>
+            {this.state.bodyPart.map((bodyPart) => (
+              <li key={bodyPart}>{bodyPart}</li>
+            ))}
+          </h1>
         </div>
       </div>
     );
