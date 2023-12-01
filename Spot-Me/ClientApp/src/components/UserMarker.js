@@ -3,13 +3,13 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 class UserMarker extends Component {
   render() {
-    const { name, User } = this.props;
+    const { name, User, friend } = this.props;
 
     const markerStyle = {
       width: 15,
       height: 15,
       borderRadius: '50%',
-      backgroundColor: User ? "rgb(45,75,247)" : "red",
+      backgroundColor: User ? "yellow" : friend ? "blue" : "red",
       border: "3px solid white",
     };
 
