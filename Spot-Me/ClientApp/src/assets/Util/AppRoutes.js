@@ -7,11 +7,17 @@ import {FriendPage} from "../../pages/FriendPage";
 import {TrackerPage} from "../../pages/TrackerPage";
 import {ProfilePage} from "../../pages/ProfilePage";
 import {ExercisePage} from "../../pages/ExercisePage";
+import Error from "../../components/Error";
 import MapPage from "../../pages/MapPage";
+
 const AppRoutes = [
   {
     index: true,
     element: <Home />
+  },
+  {
+    path: '/*',
+    element: <Error/>
   },
   {
     path: '/login',
@@ -34,16 +40,16 @@ const AppRoutes = [
     element: <ProfilePage/>
   },
   {
-    path: `/user/*`,
-    element: <FriendPage/>
-  },
-  {
     path: '/map',
     element: <MapPage/>
   },
   {
     path: '/exercises',
     element: <ExercisePage/>
+  },
+  {
+    path: `/user/*`,
+    element: <FriendPage/>
   },
 ];
 

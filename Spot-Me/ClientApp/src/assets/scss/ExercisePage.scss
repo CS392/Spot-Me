@@ -1,0 +1,30 @@
+@import 'variable';
+
+.exerciseSelect {
+  height: 25vh; 
+}
+
+.addDiv {
+  display: flex;
+  flex-direction: row;
+  margin: 5vh 0;
+  width: 60vw;
+  & > button {
+    margin: 0 0.2rem;
+  }
+}
+
+.exerciseContainer {
+  margin: 2.5vh 0;
+}
+
+.exerciseBtnContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-content: start;
+  & > button {
+    margin: 2.5vh 0 0;
+    width: 50%;
+  }
+}

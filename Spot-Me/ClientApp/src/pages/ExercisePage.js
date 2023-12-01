@@ -1,5 +1,6 @@
 import React from "react";
 import { FormGroup, Label, Input, Col, Button, ButtonGroup, Form } from "reactstrap";
+import '../assets/css/ExercisePage.css'
 
 export class ExercisePage extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ export class ExercisePage extends React.Component {
         choosedExercise: [...choosedExercise, selectedObj],
         selectedExercise: "",
       });
+      console.log(this.state)
     }
   };
   handleRemoveExercise = (index) => {
@@ -67,53 +69,46 @@ export class ExercisePage extends React.Component {
     const buttonStyle = { margin: "5px", display: "inline-block" };
     return (
       <div>
-        <ButtonGroup>
+        <div className={'addDiv'}>
           {this.exerciseArea.map((exercise) => (
-            <Button
-              key={exercise}
-              onClick={() => this.updateResult(exercise)}
-              style={buttonStyle}
-              color="primary"
-            >
-              {exercise}
-            </Button>
+              <button
+                  key={exercise}
+                  onClick={() => this.updateResult(exercise)}>
+                {exercise}
+              </button>
           ))}
-        </ButtonGroup>
-        <h1>Exercise Page</h1>
+        </div>
+        <h1> Choose your Exercise </h1>
 
         <div>
-          <FormGroup row>
-            <Label>Exercise Name</Label>
-            <Col md={6}>
-              <Input
+          <Label>Exercise Choice </Label>
+          <Input
+                className={'exerciseSelect'}
                 multiple
                 name="selectMulti"
                 type="select"
                 rows={5}
                 onChange={(e) =>
-                  this.setState({ selectedExercise: e.target.value })
+                    this.setState({ selectedExercise: e.target.value })
                 }
-              >
-                {this.state.exercises.map((exercise, index) => (
-                    <option key={index} value={exercise.name}>
+            >
+              {this.state.exercises.map((exercise, index) => (
+                  <option key={index} value={exercise.name}>
                     {exercise.name}
-                    </option>
-                ))}
-              </Input>
-
-              <Button onClick={this.handleExerciseSubmission}>Add</Button>
-            </Col>
-            <Col md={6}>
-            <Form type="unstyled">
-                {this.state.choosedExercise.map((exercise, index) => (
-                    <li key={index} onClick={() => this.handleRemoveExercise(index)}>
+                  </option>
+              ))}
+          </Input>
+            <div className={'exerciseContainer'}>
+              {this.state.choosedExercise.map((exercise, index) => (
+                  <li key={index} onClick={() => this.handleRemoveExercise(index)}>
                     {exercise.name}
-                    </li>
-                ))}
-                </Form>
-                <Button>Submit</Button>
-            </Col>
-          </FormGroup>
+                  </li>
+              ))}
+            </div>
+            <div className={'exerciseBtnContainer'}>
+              <button className={'appendExerciseBtn'} onClick={this.handleExerciseSubmission}>Add</button>
+              <button> Submit </button>
+            </div>
         </div>
       </div>
     );
