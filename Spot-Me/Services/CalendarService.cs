@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
@@ -12,16 +13,19 @@ namespace Spot_Me.Services
         public async Task<UserCredential> GetCredentials()
         {
             UserCredential credential;
+            var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
+            // Combine the assembly directory with the relative path to credentials.json
+            var credentialsPath = Path.Combine(assemblyDirectory, "Properties", "credentials.json");
             // Retrieve user credentials from file
-            using (var stream = new System.IO.FileStream("/Users/yuzeng/williamz/Junior Class/CS357/credentials.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
             {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     new[] { CalendarService.Scope.Calendar },
                     "user",
                     System.Threading.CancellationToken.None
-                );
+                ) ;;
             }
 
             return credential;
