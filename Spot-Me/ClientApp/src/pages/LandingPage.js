@@ -8,19 +8,12 @@ import '../assets/css/HomePage.css';
 export default class LandingPage extends Component {
     constructor(props) {
         super(props);
-        //plan display
-        const date = new Date();
-        let tmpDateList = [];
-        for (let i = 2; i > -3; i--) {
-            const tmpDate = new Date();
-            tmpDate.setDate(date.getDate() - i);
-            tmpDateList.push(tmpDate);
-        }
+
+
         this.state = {
             user: {},
             exercise: 'back',
-            dateData: [],
-            dateList: tmpDateList,
+            dateData: []
         };
     }
 
@@ -151,12 +144,7 @@ export default class LandingPage extends Component {
                     })}</h4>
                 </section>
                 <section>
-                    <h4> Weekly Schedule</h4>
-                    <div className={'profileDate'}>
-                        {this.state.dateList.map((date) => {
-                            return <ProfileDateCard date={date} />
-                        })}
-                    </div>
+
                 </section>
             </section>
         );

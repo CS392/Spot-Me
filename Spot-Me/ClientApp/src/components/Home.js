@@ -8,10 +8,17 @@ export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
         super(props);
+        const date = new Date();
+        let tmpDateList = [];
+        for (let i = 2; i > -3; i--) {
+            const tmpDate = new Date();
+            tmpDate.setDate(date.getDate() - i);
+            tmpDateList.push(tmpDate);
+        }
         this.state = {
             user: {},
-            exercise: 'back',
-            dateData: []
+            dateData: [],
+                        dateList: tmpDateList,
         };
     }
 
@@ -20,6 +27,12 @@ export class Home extends Component {
             <section>
                 Home
             </section>
+                                <h4> Weekly Schedule</h4>
+                    <div className={'profileDate'}>
+                        {this.state.dateList.map((date) => {
+                            return <ProfileDateCard date={date} />
+                        })}
+                    </div>
         );
     }
 }
