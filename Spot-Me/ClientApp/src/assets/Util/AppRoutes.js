@@ -9,11 +9,16 @@ import {ProfilePage} from "../../pages/ProfilePage";
 import {ExercisePage} from "../../pages/ExercisePage";
 import Error from "../../components/Error";
 import MapPage from "../../pages/MapPage";
+import LandingPage from "../../pages/LandingPage";
 
 const AppRoutes = [
   {
     index: true,
-    element: <Home />
+    element: <LandingPage/>
+  },
+  {
+    path: '/home',
+    element: <Home/>
   },
   {
     path: '/*',

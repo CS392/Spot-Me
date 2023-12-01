@@ -22,7 +22,7 @@ export default class Login extends Component {
         for (let index = 0; index < users.length; index++) {
             if (users[index].userName === this.state.username && users[index].password === this.state.password) {
                 localStorage.setItem("user", users[index].userName);
-                window.location.href = "/";
+                window.location.href = "/home";
                 return;
             }
         }
