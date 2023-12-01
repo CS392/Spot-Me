@@ -17,10 +17,9 @@ export class ExercisePage extends React.Component {
     ];
     this.state = {
       exercises: [],
-      choosedExercise: [],
       selectedExercise: "", 
       selectedBodyPart: "",
-      bodyPart:[]
+      bodyPartMapping: {},
     };
   }
 
@@ -35,8 +34,16 @@ export class ExercisePage extends React.Component {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
+      const parsed = []
       const data = await response.json();
-      this.setState({ exercises: data });
+      data.forEach((exercise) => {
+        const obj = {
+            bodyPart: exercise.bodyPart,
+            name: exercise.name,
+        };
+        parsed.push(obj);
+    });
+      this.setState({ exercises: parsed });
     } catch (error) {
       console.error("Error fetching exercise data:", error.message);
     }
@@ -44,33 +51,60 @@ export class ExercisePage extends React.Component {
 
   updateResult = (exercise) => {
     this.fetchExerciseData(exercise);
-    this.setState({ selectedBodyPart: exercise });
+    this.setState({ selectedBodyPart: exercise,
+        selectedExercise: "" ,
+        choosedExercise: []
+    }
+        );
   };
 
-  handleExerciseSubmission = () => {
-    const { selectedExercise, exercises, choosedExercise } = this.state;
+  handleAdd = () => {
+    const { selectedExercise, exercises } = this.state;
 
     if (selectedExercise) {
-      const selectedObj = exercises.find(
-        (exercise) => exercise.name === selectedExercise
-      );
+        const selectedObj = exercises.find(
+            (exercise) => exercise.name === selectedExercise
+        );
+        const name = selectedObj.name;
 
-      this.setState({
-        choosedExercise: [...choosedExercise, selectedObj],
-        selectedExercise: "",
-        bodyPart: [...this.state.bodyPart, this.state.selectedBodyPart],
-        selectedBodyPart: ""
-      });
-      console.log(this.state)
+        // Check if the selected body part is already included
+
+        // Create the new state object
+        const newState = {
+            choosedExercise: [...this.state.choosedExercise, name],
+            bodyPartMapping: {
+                ...this.state.bodyPartMapping,
+                [this.state.selectedBodyPart]: [
+                    ...(this.state.bodyPartMapping[this.state.selectedBodyPart] || []),
+                    name,
+                ],
+            },
+        };
+
+        // If the selected body part is not included, update the state
+
+        // Update the state
+        this.setState(newState, () => {
+            console.log(this.state);
+        });
     }
-  };
-  handleRemoveExercise = (index) => {
-    const updatedChoosedExercise = [...this.state.choosedExercise];
-    updatedChoosedExercise.splice(index, 1);
-    this.setState({ choosedExercise: updatedChoosedExercise });
-  };
+};
+
+
+handleRemoveExercise = (index, bodyPart) => {
+    const updatedChoosedExercise = this.state.bodyPartMapping[bodyPart].filter((_, i) => i !== index);
+
+    this.setState({
+        bodyPartMapping: {
+            ...this.state.bodyPartMapping,
+            [bodyPart]: updatedChoosedExercise,
+        },
+    });
+};
+
+
+  
   render() {
-    const buttonStyle = { margin: "5px", display: "inline-block" };
     return (
       <div>
         <div className={'addDiv'}>
@@ -103,15 +137,18 @@ export class ExercisePage extends React.Component {
               ))}
           </Input>
             <div className={'exerciseContainer'}>
-              {this.state.choosedExercise.map((exercise, index) => (
-                  <li key={index} onClick={() => this.handleRemoveExercise(index)}>
-                    {exercise.name}
-                  </li>
-              ))}
+            {Object.keys(this.state.bodyPartMapping).map((key) => (
+            this.state.bodyPartMapping[key].map((exercise, index) => (
+            <li key={index} onClick={() => this.handleRemoveExercise(index,key)}>
+                {exercise}
+            </li>
+        ))
+    ))}
             </div>
             <div className={'exerciseBtnContainer'}>
-              <button className={'appendExerciseBtn'} onClick={this.handleExerciseSubmission}>Add</button>
+              <button className={'appendExerciseBtn'} onClick={this.handleAdd}>Add</button>
               <button> Submit </button>
+              <button onClick={() => console.log(this.state)}> test </button>
             </div>
         </div>
       </div>
