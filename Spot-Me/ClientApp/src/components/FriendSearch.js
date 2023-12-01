@@ -6,16 +6,20 @@ export class FriendSearch extends Component {
         super(props);
         this.state = {
             search: '',
-            user: {},
+            user: this.props.user,
             showMain: true
         }
     }
 
     componentDidMount() {
         checkUserStatus();
-        getUserByUsername(localStorage.getItem('user')).then((res) => {
-            this.setState({user: res})
-        })
+    }
+
+    
+    componentDidUpdate() {
+        if (this.state.user !== this.props.user) {
+            this.setState({user: this.props.user})
+        }
     }
     
     toggleMainVisibility = () => {
