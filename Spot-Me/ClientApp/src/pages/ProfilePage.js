@@ -31,6 +31,7 @@ export class ProfilePage extends Component {
             <>
                 <section>
                     <h4> Weekly Schedule</h4>
+<<<<<<< HEAD
 
                     <div className={'profileInformation'}>
                         <img 
@@ -41,6 +42,41 @@ export class ProfilePage extends Component {
                         <h4> Email: </h4>
 
 
+=======
+                    <div className={'profileDate'}>
+                        {this.state.dateList.map((date) => {
+                            return <ProfileDateCard date={date}/>
+                        })}
+                    </div>
+                        {/*<img */}
+                        {/*    src={'https://imgs.search.brave.com/8o6_F1VZu3lmFOyCodmVOUEssP3vkLKte3ZevQaDexE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTEz/MTMzOTAwL3Bob3Rv/L2dvbGRlbi1yZXRy/aWV2ZXItc2l0dGlu/Zy1pbi1mcm9udC1v/Zi1hLXdoaXRlLWJh/Y2tncm91bmQuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPXJQ/dUJnZm5fd2NBemFh/OG8yR2hyQTJlQlRk/YnZyVHZZdzRkZW16/Vi1iT3M9'} alt={"default"}/>*/}
+                        {/*<h4> User Name: {this.state.user && this.state.user.userName}</h4>*/}
+                    
+                    <div className={'profileHeader'}>
+                        <div>
+                            <div></div>
+                        </div>
+                        <div>
+                            <h4> Username: {this.state.user && this.state.user.userName} </h4>
+                            <p> Standard Member </p>
+                            <br/>
+                            <p>Email address </p>
+                            <p>Phone number </p>
+                            <p>Current time {new Date().toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                    
+                    <div className={'profileEdit'}>
+                        <button> Edit Profile </button>
+                        <button className={'buttonRed'}> Delete Account  </button>
+                    </div>
+                    
+                    <div className={'profileDetail'}>
+                        <div>
+                            <p> Goals </p>
+                            <hr/>
+                        </div>
+>>>>>>> 56fc5516a13a22b3608088cf8ca020121386a146
                     </div>
                 </section>
             </>

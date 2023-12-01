@@ -5,20 +5,56 @@
   display: flex;
 }
 
-.profileInformation {
-  margin-top: 5vh;
-  padding: 5vh;
+.profileHeader {
+  display: flex;
+  overflow: hidden;
   border-radius: 0.25rem;
-  border: solid 1px black;
-  & > img {
-    margin: auto;
-    max-width: 150px;
-    padding: 0.5rem;
-    border-radius: 1000rem;
-    border: solid 1px black;
+  margin-top: 5vh;
+  box-shadow: rgba(0, 0, 0, 0.6) 0 2px 10px;
+  & > div {
+    height: 30vh;
+    &:first-of-type {
+      flex: 2;
+      position: relative;
+      & > div {
+        background-image: url("https://thispersondoesnotexist.com/");
+        width: auto;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+    &:last-of-type {
+      text-align: left;
+      flex: 4;
+      padding: 2rem;
+      & > p {
+        margin: 0;
+      }
+    }
   }
-  & > h4 {
+}
+
+.profileEdit {
+  margin-top: 5vh;
+  display: flex;
+  width: 50%;
+  & > button {
+    margin: 0.2rem;
+  }
+}
+
+.profileDetail {
+  margin-top: 5vh;
+  & > div {
     text-align: left;
-    margin: 1.25rem;
+    & > p {
+      font-weight: bolder;
+      font-size: 1.5rem;
+      margin: 0
+    }
+    & > hr {
+      margin: 0;
+    }
   }
 }
