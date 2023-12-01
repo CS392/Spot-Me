@@ -98,7 +98,7 @@ export class Home extends Component {
                 
                 {/* Redirect to Tracker Page */}
                 <div>
-                    <button className={'homeRedirect'}> Start Now </button>
+                    <button className={'homeRedirect'} onClick={() => window.location.href = '/signup'}> Start Now </button>
                 </div>
 
                 <div className={'recommendation'}>

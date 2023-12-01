@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {ProfileDateCard} from "../components/ProfileDateCard";
 import '../assets/css/ProfilePage.css';
+import { checkUserStatus } from "../assets/Util/Util";
 
 export class ProfilePage extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ export class ProfilePage extends Component {
     }
 
     componentDidMount() {
+        checkUserStatus();
 //fetching user id and storing it 
         const user = localStorage.getItem('user');
         fetch('https://localhost:7229/api/user/username/${user}')

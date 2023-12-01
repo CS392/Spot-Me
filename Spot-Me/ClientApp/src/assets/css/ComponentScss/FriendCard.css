@@ -11,12 +11,20 @@
   border-radius: 0.5rem;
   margin-bottom: 2.5vh;
   transition: all ease-out 0.2s;
+  justify-content: center;
+  align-content: center;
 }
 .friendCard > div:hover {
   border: solid black 1px;
 }
-.friendCard > div > div {
-  flex: 1;
+.friendCard > div > p {
+  flex: 8;
+  text-align: left;
+  margin: auto;
+}
+.friendCard > div > button {
+  flex: 2;
+  margin: 0;
 }
 
 /*# sourceMappingURL=FriendCard.css.map */

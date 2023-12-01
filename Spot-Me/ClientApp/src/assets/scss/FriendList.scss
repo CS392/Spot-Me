@@ -1,14 +1,52 @@
-.friendList {
-  margin-top: 5vh;
-  & section > h4 {
+.addFriend{
+  display: flex; 
+  justify-content: center;
+  place-items: center;
+  margin-bottom: 5vh;
+  & > input {
+    flex: 8;
+    margin: auto 4vw auto auto;
+  }
+  & > button {
+    height: 5vh;
+    flex: 1;
+    margin: auto;
+  }
+}
+
+.pendingFriends {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0;
+  place-items: center;
+  & > p {
+    flex: 8;
     text-align: left;
   }
-  
-  // friend search specific
-  & section > input {
-    width: 100%;   
-    padding-left: min(20px, 2.5vw);
-    margin-bottom: 5vh;
+  & > button { 
+    flex: 2;
+    margin: 0.2rem;
+  }
+}
+
+.buttonGreen {
+  &:hover {
+    background: #00a100;
+  }
+}
+
+.buttonRed {
+  &:hover{
+    background: #ff5d5d;
+  }
+}
+
+.friendList {
+  margin-top: 5vh;
+  cursor: pointer;
+  & section > h4 {
+    text-align: left;
   }
   
   // header block

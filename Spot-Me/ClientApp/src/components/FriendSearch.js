@@ -1,15 +1,27 @@
 import React, {Component} from "react";
-import {getAllUsers, getUserByUsername, updateUser} from "../assets/Util/Util";
+import {getAllUsers, getUserByUsername, updateUser, checkUserStatus} from "../assets/Util/Util";
 
 export class FriendSearch extends Component {
     constructor(props){
         super(props);
         this.state = {
             search: '',
-            user: getUserByUsername(localStorage.getItem('user')).then((res) => {
-                this.setState({user: res})
-            })
+            user: {},
+            showMain: true
         }
+    }
+
+    componentDidMount() {
+        checkUserStatus();
+        getUserByUsername(localStorage.getItem('user')).then((res) => {
+            this.setState({user: res})
+        })
+    }
+    
+    toggleMainVisibility = () => {
+        this.setState({
+            showMain: !this.state.showMain
+        })
     }
 
     handleChange = (event) => {
@@ -17,7 +29,7 @@ export class FriendSearch extends Component {
             search: event.target.value
         })
         console.log(this.state.search)
-        console.log(this.state.user)
+        console.log(this.state)
     }
 
     handleAddFriend = async () => {
@@ -67,33 +79,35 @@ export class FriendSearch extends Component {
         }
     }
 
-
     render() {
         return (
             <section style={{marginTop: '0px'}}>
                 <h4> Add a friend</h4>
-                <input 
-                    type={"text"}
-                    placeholder={"Type in their username"}
-                    value={this.state.search}
-                    onChange={this.handleChange}
+                <div className={'addFriend'}>
+                    <input
+                        type={"text"}
+                        placeholder={"Type in their username"}
+                        value={this.state.search}
+                        onChange={this.handleChange}
                     />
-                <button onClick={this.handleAddFriend}>Add</button>
+                    <button onClick={this.handleAddFriend}>Add</button>
+                </div>
 
-                <h4> Friend Requests</h4>
+                <h4 onClick={this.toggleMainVisibility}> Friend Requests</h4>
+                
+                <hr/>
                 <div>
 
-                {this.state.user.pending && this.state.user.pending.map((userName, idx) => {
+                {this.state.showMain && this.state.user.pending && this.state.user.pending.map((userName, idx) => {
                     return (
-                        <div key={idx}>
+                        <div key={idx} className={'pendingFriends'}>
                             <p>{userName}</p>
-                            <button onClick={() => this.handleAccept(userName)}>Accept</button>
-                            <button onClick={() => this.handleDecline(userName)}>Decline</button>
+                            <button className={'buttonGreen'}  onClick={() => this.handleAccept(userName)}>Accept</button>
+                            <button className={'buttonRed'} onClick={() => this.handleDecline(userName)}>Decline</button>
                         </div>
                     )
                 })}
                 </div>
-                
             </section>
         );
     }
