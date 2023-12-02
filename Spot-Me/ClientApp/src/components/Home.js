@@ -29,11 +29,11 @@ export class Home extends Component {
             <section>
                 Home
             </section>
-                                <h4> Weekly Schedule</h4>
-                    <div className={'profileDate'}>
-                        {this.state.dateList.map((date) => {
-                            return <ProfileDateCard date={date} />
-                        })}
+                <h4> Weekly Schedule</h4>
+                <div className={'profileDate'}>
+                    {this.state.dateList.map((date) => {
+                        return <ProfileDateCard date={date} />
+                    })}
                 </div>
             </div>
         );

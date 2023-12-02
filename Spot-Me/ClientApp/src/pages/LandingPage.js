@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import { ExerciseCard } from '../components/ExerciseCard';
-import { ProfileDateCard } from "../components/ProfileDateCard";
 import { exerciseArray } from '../assets/Util/ExerciseType';
 import weight from '../assets/images/weight-gym-svgrepo-com.svg';
 import '../assets/css/HomePage.css';
@@ -124,6 +122,15 @@ export default class LandingPage extends Component {
                     </div>
                 </div>
 
+                <h4 className={'homeH1'}> Upcoming Events </h4>
+                <section className={'calendar'}>
+                    <div className={'events'}>
+                        {this.state.dateData.map((type) => {
+                            return <h3 style={{ fontSize: '1rem' }}>{type[0].split(" ")[0]+ "  "+type[1] + " "}</h3>;
+                        })}
+                    </div>
+                </section>
+
                 <h1 className={"homeH1"}> Exercise Areas </h1>
 
                 <div className={'selections'}>
@@ -133,19 +140,6 @@ export default class LandingPage extends Component {
                         </button>
                     ))}
                 </div>
-
-                {/*<section className={'exerciseTypes'}>*/}
-                {/*    <ExerciseCard key={this.state.exercise} type={this.state.exercise} ref="childComponent" />*/}
-                {/*</section>*/}
-
-                <section className={'calendar'}>
-                    <h4> Upcoming Events: {this.state.dateData.map((type) => {
-                        return <h3 style={{ fontSize: '12px' }}>{type[0]+ "  "+type[1] + " "}</h3>;
-                    })}</h4>
-                </section>
-                <section>
-
-                </section>
             </section>
         );
     }
