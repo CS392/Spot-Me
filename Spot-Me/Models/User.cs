@@ -38,7 +38,8 @@ namespace SpotMe.Models
         public List<string> HelpNeeded { get; set; } = new List<string>();
         
         [BsonElement("exercise")]
-        public Dictionary<string, List<string>> Exercise { get; set; } = new Dictionary<string, List<string>>();
+        public Dictionary<string, Dictionary<string, List<string>>> Exercise { get; set; } 
+            = new Dictionary<string, Dictionary<string, List<string>>>();
 
         [BsonElement("personalBestSquat")] 
         public string PersonalBestSquat = "0";
