@@ -30,16 +30,6 @@ export class ProfilePage extends Component {
         return (
             <>
                 <section>
-                    <h4> Weekly Schedule</h4>
-
-                    <div className={'profileInformation'}>
-                        <img 
-                            src={'https://imgs.search.brave.com/8o6_F1VZu3lmFOyCodmVOUEssP3vkLKte3ZevQaDexE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTEz/MTMzOTAwL3Bob3Rv/L2dvbGRlbi1yZXRy/aWV2ZXItc2l0dGlu/Zy1pbi1mcm9udC1v/Zi1hLXdoaXRlLWJh/Y2tncm91bmQuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPXJQ/dUJnZm5fd2NBemFh/OG8yR2hyQTJlQlRk/YnZyVHZZdzRkZW16/Vi1iT3M9'} alt={"default"}/>
-                        <h4> User Name: {this.state.user && this.state.user.userName}</h4>
-                        <h4> First Name: </h4>
-                        <h4> Last Name: </h4>
-                        <h4> Email: </h4>
-
                     {/* <div className={'profileDate'}>
                         {this.state.dateList.map((date) => {
                             return <ProfileDateCard date={date}/>
@@ -57,9 +47,6 @@ export class ProfilePage extends Component {
                             <p>Email address </p>
                             <p>Phone number </p>
                             <p>Current time {new Date().toLocaleDateString()}</p>
-                            <p>Squat: {this.state.user && this.state.user.personalBestSquat}</p>
-                            <p>Bench: {this.state.user && this.state.user.personalBestBench}</p>
-                            <p>Deadlift: {this.state.user && this.state.user.personalBestDeadlift}</p>
 
                         </div>
                     </div>
@@ -71,11 +58,13 @@ export class ProfilePage extends Component {
                     
                     <div className={'profileDetail'}>
                         <div>
-                            <p> Goals </p>
+                            <p> Personal Records </p>
                             <hr/>
+                            <p>Squat: {this.state.user && this.state.user.personalBestSquat}</p>
+                            <p>Bench: {this.state.user && this.state.user.personalBestBench}</p>
+                            <p>Deadlift: {this.state.user && this.state.user.personalBestDeadlift}</p>
                         </div>
                         </div>
-</div>
                 </section>
             </>
         )
