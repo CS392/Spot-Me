@@ -34,7 +34,7 @@ export class FriendStatusBlock extends Component {
                 <hr/>
                 {this.state.showMain && <main id={`${this.state.blockHeader}-main`}>
                     {this.state.user.friends && this.state.user.friends.map((friend, index) => {
-                        return <FriendCard key={index} friend={friend}/>
+                        return <FriendCard key={index} friend={friend} user={this.state.user}/>
                     })}
                 </main>}
             </section>
