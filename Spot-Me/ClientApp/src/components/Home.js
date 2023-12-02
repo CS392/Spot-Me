@@ -25,17 +25,14 @@ export class Home extends Component {
 
     render() {
         return (
-            <div>
-            <section>
-                Home
-            </section>
-                <h4> Weekly Schedule</h4>
-                <div className={'profileDate'}>
+            <section style={{marginTop: '5vh'}}>
+                <h4 style={{textAlign: 'left', margin: '0'}}> Weekly Schedule</h4>
+                <div className={'exerciseDate'}>
                     {this.state.dateList.map((date) => {
                         return <ProfileDateCard date={date} />
                     })}
                 </div>
-            </div>
+            </section>
         );
     }
 }

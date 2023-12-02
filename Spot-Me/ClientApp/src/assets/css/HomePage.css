@@ -103,4 +103,9 @@ section {
   color: darkorange;
 }
 
+.exerciseDate {
+  padding-top: 2.5vh;
+  display: flex;
+}
+
 /*# sourceMappingURL=HomePage.css.map */

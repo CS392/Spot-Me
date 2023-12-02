@@ -15,10 +15,17 @@ export class ProfileDateCard extends Component {
         const ExercisePageRoute = `/exercise/${this.state.date.toLocaleDateString().replaceAll("/", '-')}`;
         return (
             <>
-                <Link className={'profileDateCard'} to = {ExercisePageRoute}>
-                    <p> {this.state.date.toLocaleDateString()}</p>
-                    <p>  Exercise Type </p>
-                </Link>
+                <section className={'dateCardSection'}>
+                    <p> {this.state.date.toLocaleDateString()} </p>
+                    <div>
+                        <p> Body Type: </p>
+                        <p> Exercise name: </p>
+                    </div>
+                    
+                    <div onClick={() => window.location.href = ExercisePageRoute}>
+                        <p> + </p>
+                    </div>
+                </section>
             </>)
     }       
 }
