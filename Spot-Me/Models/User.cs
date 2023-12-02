@@ -42,13 +42,13 @@ namespace SpotMe.Models
             = new Dictionary<string, Dictionary<string, List<string>>>();
 
         [BsonElement("personalBestSquat")] 
-        public string PersonalBestSquat = "0";
+        public string PersonalBestSquat { get; set; } = "0";
         
         [BsonElement("personalBestDeadlift")] 
-        public string PersonalBestDeadlift = "0";
+        public string PersonalBestDeadlift { get; set; } = "0";
         
         [BsonElement("personalBestBench")] 
-        public string PersonalBestBench = "0";
+        public string PersonalBestBench { get; set; } = "0";
 
         [BsonElement("location")]
         public Location Location { get; set; } = new Location();

@@ -40,11 +40,11 @@ export class ProfilePage extends Component {
                         <h4> Last Name: </h4>
                         <h4> Email: </h4>
 
-                    <div className={'profileDate'}>
+                    {/* <div className={'profileDate'}>
                         {this.state.dateList.map((date) => {
                             return <ProfileDateCard date={date}/>
                         })}
-                    </div>
+                    </div> */}
   
                     <div className={'profileHeader'}>
                         <div>
@@ -57,6 +57,10 @@ export class ProfilePage extends Component {
                             <p>Email address </p>
                             <p>Phone number </p>
                             <p>Current time {new Date().toLocaleDateString()}</p>
+                            <p>Squat: {this.state.user && this.state.user.personalBestSquat}</p>
+                            <p>Bench: {this.state.user && this.state.user.personalBestBench}</p>
+                            <p>Deadlift: {this.state.user && this.state.user.personalBestDeadlift}</p>
+
                         </div>
                     </div>
                     
