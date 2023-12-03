@@ -23,6 +23,17 @@ export class ProfileDateCard extends Component {
 
     }
     
+    clicked = (key) => {
+        let element = document.getElementById(key);
+        if (element.classList.contains('inprogress')) {
+            element.classList.remove('inprogress');
+            element.classList.add('done');
+        } else {
+            element.classList.remove('done');
+            element.classList.add('inprogress');
+        }
+    }
+    
     render() {
         const ExercisePageRoute = `/exercise/${this.state.date.toLocaleDateString().replaceAll("/", '-')}`;
         const All_dates = this.state.user.exercise;
@@ -41,15 +52,13 @@ export class ProfileDateCard extends Component {
                             // Check if the date matches the current date
                             if (date.replaceAll("-", '/') == this.state.date.toLocaleDateString()) {
                                 return (
-                                    <div key={dateIndex}>
-                                        <p> Body Type: {Object.keys(All_dates[date])} </p>
-                                        <p> Exercise: </p>
-                                        {Object.keys(All_dates[date]).map((exercisePart, exerciseIndex) => (
-                                            <div key={exerciseIndex}>
+                                    Object.keys(All_dates[date]).map((exercisePart, exerciseIndex) => (
+                                            <div className={'inprogress'} key={All_dates[date][exercisePart]} 
+                                                 id={`${All_dates[date][exercisePart].toString().replaceAll(" ", "")}-${date}`} 
+                                                 onClick={() => this.clicked(`${All_dates[date][exercisePart].toString().replaceAll(" ", "")}-${date}`)}>
                                                 <p>{All_dates[date][exercisePart]} </p>
                                             </div>
-                                        ))}
-                                    </div>
+                                        ))
                                 );
                             }
                         })}
