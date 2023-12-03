@@ -88,3 +88,25 @@ section {
   }
 }
 
+.calendar {
+  margin: 8vh 0;
+}
+
+.events{
+  text-align: left;
+  box-shadow: rgba(255, 140, 0, 0.4) 0 2px 10px;
+  border-radius: 0.4rem;
+  padding: 2rem 1rem;
+  & > h3 {
+    cursor: pointer;
+    &:hover {
+      color: darkorange;
+    }
+  }
+}
+
+.exerciseDate {
+  padding-top: 2.5vh;
+  display: flex;
+}
+
