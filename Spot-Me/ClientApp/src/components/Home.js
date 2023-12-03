@@ -12,9 +12,9 @@ export class Home extends Component {
         super(props);
         const date = new Date();
         let tmpDateList = [];
-        for (let i = 2; i > -3; i--) {
+        for (let i = 0; i < 5; i++) {
             const tmpDate = new Date();
-            tmpDate.setDate(date.getDate() - i);
+            tmpDate.setDate(date.getDate() + i);
             tmpDateList.push(tmpDate);
         }
         this.state = {
