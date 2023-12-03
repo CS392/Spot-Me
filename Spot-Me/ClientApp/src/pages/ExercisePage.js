@@ -1,12 +1,7 @@
 import React from "react";
 import {
-  FormGroup,
   Label,
   Input,
-  Col,
-  Button,
-  ButtonGroup,
-  Form,
 } from "reactstrap";
 import "../assets/css/ExercisePage.css";
 import { updateUser, checkUserStatus, getUserByUsername} from "../assets/Util/Util";
@@ -172,7 +167,7 @@ export class ExercisePage extends React.Component {
             ))}
           </Input>
           <div className={"exerciseContainer"}>
-            {Object.keys(this.state.bodyPartMapping).map((key) =>
+            {this.state.bodyPartMapping != null && Object.keys(this.state.bodyPartMapping).map((key) =>
               this.state.bodyPartMapping[key].map((exercise, index) => (
                 <div key={`${index}-div`}>
                   <button
@@ -189,10 +184,10 @@ export class ExercisePage extends React.Component {
             )}
           </div>
           <div className={"exerciseBtnContainer"}>
-            <button className={"appendExerciseBtn"} onClick={this.handleAdd}>
+            <button className={"appendExerciseBtn"} onClick={() => this.handleAdd()}>
               Add
             </button>
-            <button className={"buttonGreen"} onClick={this.handleSubmit}>
+            <button className={"buttonGreen"} onClick={() => this.handleSubmit()}>
               {" "}
               Submit{" "}
             </button>
