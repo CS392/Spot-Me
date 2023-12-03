@@ -52,6 +52,7 @@ export class FriendSearch extends Component {
         }else{
             console.log("User not found")
         }
+        document.getElementById('friendSearch').value = "";
     }
 
     handleAccept = async (userName) => {
@@ -90,6 +91,7 @@ export class FriendSearch extends Component {
                 <div className={'addFriend'}>
                     <input
                         type={"text"}
+                        id={'friendSearch'}
                         placeholder={"Type in their username"}
                         value={this.state.search}
                         onChange={this.handleChange}
