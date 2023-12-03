@@ -22,9 +22,10 @@ export class ProfileDateCard extends Component {
                         <p> Exercise name: </p>
                     </div>
                     
-                    <div onClick={() => window.location.href = ExercisePageRoute}>
+                    { this.props.perms && <div onClick={() => window.location.href = ExercisePageRoute}>
                         <p> + </p>
                     </div>
+                    }
                 </section>
             </>)
     }       
