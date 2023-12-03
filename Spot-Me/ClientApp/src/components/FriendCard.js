@@ -12,8 +12,10 @@ export class FriendCard extends Component {
         }
     }
     
-    redirect = () => {
-        window.location.href = '/user/1'
+    redirect = async () => {
+        
+         window.location.href = `/user/${this.props.friend}`; // Replace 'username' with the correct property for the friend's username
+
     }
 
     async componentDidMount() {
@@ -42,7 +44,7 @@ export class FriendCard extends Component {
             <div className={"friendCard"}>
                 {/* Map user information here & see if anyone request Lift */}
                 <div>
-                    <p> {this.props.friend} </p>
+                    <p onClick={this.redirect}> {this.props.friend} </p>
                     {this.state.friendData.helpRequests && this.state.friendData.helpRequests.includes(this.props.user.userName) ? <div> Pending Spotter Request </div>: <button className={'buttonRed'} onClick={() => this.addRequest()}> SPOT ME! </button>}
                     {this.props.user && (this.props.user.helpRequests.includes(this.props.friend)) && <button className={'buttonGreen'} onClick={() => this.acceptRequest()}> ACCEPT SPOT REQUEST </button>}
                 </div>
