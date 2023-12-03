@@ -28,12 +28,14 @@ export class ExercisePage extends React.Component {
   }
 
   async componentDidMount() {
-    this.fetchExerciseData();
     const userName = localStorage.getItem('user');
     const user = await getUserByUsername(userName);
+    console.log(user, "user")
     const curr_date = window.location.pathname.split("/")[2];
     this.setState({ user: user });
-    this.setState({ bodyPartMapping: user.exercise[curr_date]});
+    if(user.exercise[curr_date] != null) {
+      this.setState({ bodyPartMapping: user.exercise[curr_date]});
+    }
 
   }
 
@@ -67,49 +69,26 @@ export class ExercisePage extends React.Component {
       choosedExercise: [],
     });
   };
-  handleSubmit = () => {
-    const pathSegments = window.location.pathname.split("/");
-    const curr_date = pathSegments[2];
-  
-    const { bodyPartMapping } = this.state;
-    const Workout = {
-      [curr_date]: bodyPartMapping,
-    };
-
-    console.log(Workout);
-
-  };
   
   handleAdd = () => {
     const { selectedExercise, exercises } = this.state;
-
-    if (selectedExercise) {
-      const selectedObj = exercises.find(
-        (exercise) => exercise.name === selectedExercise
-      );
-      const name = selectedObj.name;
-
       // Check if the selected body part is already included
 
       // Create the new state object
       const newState = {
-        choosedExercise: [...this.state.choosedExercise, name],
+
+        choosedExercise: [...this.state.choosedExercise, selectedExercise],
         bodyPartMapping: {
           ...this.state.bodyPartMapping,
           [this.state.selectedBodyPart]: [
             ...(this.state.bodyPartMapping[this.state.selectedBodyPart] || []),
-            name,
+            selectedExercise ,
           ],
         },
+        
       };
+      this.setState(newState);
 
-      // If the selected body part is not included, update the state
-
-      // Update the state
-      this.setState(newState, () => {
-        console.log(this.state);
-      });
-    }
   };
   handleSubmit = () => {
     const curr_date = window.location.pathname.split("/")[2];
@@ -119,7 +98,6 @@ export class ExercisePage extends React.Component {
     }
     const NewUser = this.state.user;
     NewUser.exercise = {...NewUser.exercise, ...exercise};
-    console.log(NewUser);
     updateUser(this.state.user.id, NewUser);
   };
 
