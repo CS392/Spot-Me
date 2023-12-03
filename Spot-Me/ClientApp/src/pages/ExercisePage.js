@@ -162,10 +162,10 @@ export class ExercisePage extends React.Component {
             )}
           </div>
           <div className={"exerciseBtnContainer"}>
-            <button className={"appendExerciseBtn"} onClick={() => this.handleAdd()}>
+            <button className={"appendExerciseBtn"} onClick={this.handleAdd}>
               Add
             </button>
-            <button className={"buttonGreen"} onClick={() => this.handleSubmit()}>
+            <button className={"buttonGreen"} onClick={this.handleSubmit}>
               {" "}
               Submit{" "}
             </button>
