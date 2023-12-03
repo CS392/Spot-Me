@@ -12,9 +12,6 @@ export class ProfilePage extends Component {
             user: {}
             
         }
-
-
-        
     }
 
     async componentDidMount() {
