@@ -2,9 +2,18 @@ import React from "react";
 import {
   Label,
   Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
 } from "reactstrap";
 import "../assets/css/ExercisePage.css";
-import { updateUser, checkUserStatus, getUserByUsername} from "../assets/Util/Util";
+import {
+  updateUser,
+  checkUserStatus,
+  getUserByUsername,
+} from "../assets/Util/Util";
 export class ExercisePage extends React.Component {
   constructor(props) {
     super(props);
@@ -23,22 +32,23 @@ export class ExercisePage extends React.Component {
       selectedExercise: "",
       selectedBodyPart: "",
       bodyPartMapping: {},
-      user: {}
+      user: {},
+      modal: false,
     };
   }
-
+  toggleModal = () => {
+    this.setState({ modal: !this.state.modal });
+  };
   async componentDidMount() {
-    const userName = localStorage.getItem('user');
+    const userName = localStorage.getItem("user");
     const user = await getUserByUsername(userName);
-    console.log(user, "user")
+    console.log(user, "user");
     const curr_date = window.location.pathname.split("/")[2];
     this.setState({ user: user });
-    if(user.exercise[curr_date] != null) {
-      this.setState({ bodyPartMapping: user.exercise[curr_date]});
+    if (user.exercise[curr_date] != null) {
+      this.setState({ bodyPartMapping: user.exercise[curr_date] });
     }
-
   }
-
   async fetchExerciseData(type) {
     try {
       const apiUrl = `https://localhost:7229/api/excerciseDB/data?type=${type}`;
@@ -59,7 +69,7 @@ export class ExercisePage extends React.Component {
     } catch (error) {
       console.error("Error fetching exercise data:", error.message);
     }
-}
+  }
 
   updateResult = (exercise) => {
     this.fetchExerciseData(exercise);
@@ -69,36 +79,36 @@ export class ExercisePage extends React.Component {
       choosedExercise: [],
     });
   };
-  
+
   handleAdd = () => {
-    const { selectedExercise, exercises } = this.state;
-      // Check if the selected body part is already included
+    const { selectedExercise } = this.state;
+    // Check if the selected body part is already included
 
-      // Create the new state object
+    // Create the new state object
+    if (selectedExercise) {
       const newState = {
-
         choosedExercise: [...this.state.choosedExercise, selectedExercise],
         bodyPartMapping: {
           ...this.state.bodyPartMapping,
           [this.state.selectedBodyPart]: [
             ...(this.state.bodyPartMapping[this.state.selectedBodyPart] || []),
-            selectedExercise ,
+            selectedExercise,
           ],
         },
-        
       };
       this.setState(newState);
-
+    }
   };
   handleSubmit = () => {
     const curr_date = window.location.pathname.split("/")[2];
     const { bodyPartMapping } = this.state;
     const exercise = {
-        [curr_date]: bodyPartMapping
-    }
+      [curr_date]: bodyPartMapping,
+    };
     const NewUser = this.state.user;
-    NewUser.exercise = {...NewUser.exercise, ...exercise};
+    NewUser.exercise = { ...NewUser.exercise, ...exercise };
     updateUser(this.state.user.id, NewUser);
+    this.toggleModal();
   };
 
   handleRemoveExercise = (index, bodyPart) => {
@@ -172,6 +182,18 @@ export class ExercisePage extends React.Component {
             <button onClick={() => console.log(this.state)}> test </button>
           </div>
         </div>
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+          <ModalHeader toggle={this.toggleModal}>Success!</ModalHeader>
+          <ModalBody>
+            Your submission was successful.{" "}
+            {/* You can customize this message */}
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggleModal}>
+              Close
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
