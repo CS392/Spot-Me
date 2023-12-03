@@ -41,7 +41,7 @@ export class Home extends Component {
                 <h4 style={{textAlign: 'left', margin: '0'}}> Weekly Schedule</h4>
                 <div className={'exerciseDate'}>
                     {this.state.dateList.map((date) => {
-                        return <ProfileDateCard date={date} perms={true}/>
+                        return <ProfileDateCard date={date} perms={true} user = {this.state.user}/>
                     })}
                 </div>
             </section>

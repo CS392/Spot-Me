@@ -145,7 +145,7 @@ export class ExercisePage extends React.Component {
             ))}
           </Input>
           <div className={"exerciseContainer"}>
-            {this.state.bodyPartMapping != null && Object.keys(this.state.bodyPartMapping).map((key) =>
+            {Object.keys(this.state.bodyPartMapping).map((key) =>
               this.state.bodyPartMapping[key].map((exercise, index) => (
                 <div key={`${index}-div`}>
                   <button
