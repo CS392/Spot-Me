@@ -53,10 +53,11 @@ export class ProfileDateCard extends Component {
                             if (date.replaceAll("-", '/') == this.state.date.toLocaleDateString()) {
                                 return (
                                     Object.keys(All_dates[date]).map((exercisePart, exerciseIndex) => (
-                                            <div className={'inprogress'} key={All_dates[date][exercisePart]} 
+                                            <div className={'inprogress'} key={All_dates[date][exercisePart]}
                                                  id={`${All_dates[date][exercisePart].toString().replaceAll(" ", "")}-${date}`} 
                                                  onClick={() => this.clicked(`${All_dates[date][exercisePart].toString().replaceAll(" ", "")}-${date}`)}>
-                                                <p>{All_dates[date][exercisePart]} </p>
+                                                <p style={{fontWeight: 'bolder'}}> {exercisePart} </p>
+                                                <p style={{fontSize: '12px'}}>{All_dates[date][exercisePart]} </p>
                                             </div>
                                         ))
                                 );
