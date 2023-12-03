@@ -39,13 +39,6 @@ export class ProfilePage extends Component {
                         <h4> First Name: </h4>
                         <h4> Last Name: </h4>
                         <h4> Email: </h4>
-
-                    <div className={'profileDate'}>
-                        {this.state.dateList.map((date) => {
-                            return <ProfileDateCard date={date}/>
-                        })}
-                    </div>
-  
                     <div className={'profileHeader'}>
                         <div>
                             <div></div>
