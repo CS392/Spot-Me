@@ -13,7 +13,7 @@ export class FriendCard extends Component {
     }
     
     redirect = () => {
-        window.location.href = '/user/1'
+        window.location.href = '/user/0'
     }
 
     async componentDidMount() {

@@ -7,7 +7,8 @@ export class FriendSearch extends Component {
         this.state = {
             search: '',
             user: this.props.user,
-            showMain: true
+            showMain: true,
+            userNotFound:false
         }
     }
 
@@ -47,9 +48,12 @@ export class FriendSearch extends Component {
             }else{
                 found.pending.push(this.state.user.userName)
                 updateUser(found.id, found)
+                this.setState({ userNotFound: false });
                 console.log("Friend request sent")
             }
-        }else{
+        } else {
+            //add something here
+            this.setState({ userNotFound: true });
             console.log("User not found")
         }
     }
@@ -95,6 +99,7 @@ export class FriendSearch extends Component {
                         onChange={this.handleChange}
                     />
                     <button onClick={this.handleAddFriend}>Add</button>
+                    {this.state.userNotFound && <p>User not found</p>}
                 </div>
 
                 <h4 onClick={this.toggleMainVisibility}> Friend Requests</h4>
