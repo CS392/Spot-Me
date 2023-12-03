@@ -58,7 +58,7 @@ export class FriendPage extends Component {
                 </section>
                 <section style={{marginTop: '5vh'}}>
                     <h4 style={{textAlign: 'left', margin: '0'}}> Weekly Schedule</h4>
-                    <div className={'exerciseDate'}>
+                    <div className={'exerciseDate'} >
                         {this.state.dateList.map((date, idx) => {
                             return <ProfileDateCard date={date} key={idx} perms={false}/>
                         })}

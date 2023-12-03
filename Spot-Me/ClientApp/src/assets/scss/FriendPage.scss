@@ -6,5 +6,16 @@
     border-radius: 0.25rem;
     border: solid black 1px;
     height: 40vh;
-  } 
+  }
+  & > section {
+    & > div {
+      & > section {
+        & > div {
+          & p {
+            font-size: 1rem !important;
+          }
+        }
+      }
+    }
+  }
 }
