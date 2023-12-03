@@ -21,8 +21,13 @@ export class FriendPage extends Component {
 
     async componentDidMount() {
         const friendName = window.location.pathname.split('/')[2];
-        const friend = await getUserByUsername(friendName);
-        this.setState({friend: friend});
+        const friends = await getUserByUsername(friendName);
+        this.setState({ friend: friends });
+ 
+
+    }
+    componentDidUpdate() {
+        //console.log(this.state.friend.exercise);
     }
 
 
@@ -56,15 +61,20 @@ export class FriendPage extends Component {
                         </div>
                         </div>
                 </section>
-                <section style={{marginTop: '5vh'}}>
-                    <h4 style={{textAlign: 'left', margin: '0'}}> Weekly Schedule</h4>
-                    <div className={'exerciseDate'} >
-                        {this.state.dateList.map((date, idx) => {
-                            return <ProfileDateCard date={date} key={idx} perms={false}/>
+                <section style={{ marginTop: '5vh' }}>
+                    <h4 style={{ textAlign: 'left', margin: '0' }}> Weekly Schedule</h4>
+                    <div className={'exerciseDate'}>
+                        {this.state.dateList.map((date) => {
+                            return <ProfileDateCard date={date} perms={true} user={this.state.friend} />
                         })}
                     </div>
                 </section>
+
+
             </section>
         );
     }
 }
+
+
+
