@@ -24,6 +24,7 @@ export class ProfileDateCard extends Component {
     }
     
     clicked = (key) => {
+        if (!this.props.perms) return;
         let element = document.getElementById(key);
         if (element.classList.contains('inprogress')) {
             element.classList.remove('inprogress');
@@ -69,6 +70,7 @@ export class ProfileDateCard extends Component {
                             <p> + </p>
                         </div>
                     )}
+                    {!this.props.perms && <div style={{display: 'none'}}></div>} 
                 </section>
             </>
         );
