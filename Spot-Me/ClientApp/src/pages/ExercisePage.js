@@ -47,7 +47,7 @@ export class ExercisePage extends React.Component {
     } catch (error) {
       console.error("Error fetching exercise data:", error.message);
     }
-  }
+}
 
   updateResult = (exercise) => {
     this.fetchExerciseData(exercise);
@@ -57,7 +57,19 @@ export class ExercisePage extends React.Component {
     }
         );
   };
+  handleSubmit = () => {
+    const pathSegments = window.location.pathname.split("/");
+    const curr_date = pathSegments[2];
+  
+    const { bodyPartMapping } = this.state;
+    const Workout = {
+      [curr_date]: bodyPartMapping,
+    };
 
+    console.log(Workout);
+
+  };
+  
   handleAdd = () => {
     const { selectedExercise, exercises } = this.state;
 
@@ -150,7 +162,7 @@ handleRemoveExercise = (index, bodyPart) => {
             </div>
             <div className={'exerciseBtnContainer'}>
               <button className={'appendExerciseBtn'} onClick={this.handleAdd}>Add</button>
-              <button className={'buttonGreen'}> Submit </button>
+              <button className={'buttonGreen'} onClick = {this.handleSubmit}> Submit </button>
               <button onClick={() => console.log(this.state)}> test </button>
             </div>
         </div>
