@@ -29,13 +29,21 @@ class UserMarker extends Component {
             <p style={textStyle}>{name}</p>
           </div>
         ) : (
+          friend ? (
+            <Link to={`/user/${name}`} style={{ textDecoration: 'none' }}>
+            <div style={markerStyle}>
+              <p style={textStyle}>{name}</p>
+            </div>
+            </Link>
+          ) : (
             <Link to={`/gym/${name}`} style={{ textDecoration: 'none' }}>
             <div style={markerStyle}>
               <p style={textStyle}>{name}</p>
             </div>
           </Link>
         )
-      );
+      )
+    );
     }
   }
 export default UserMarker;
