@@ -44,39 +44,7 @@ export default class LandingPage extends Component {
 
 
         //Calendar code
-        fetch('https://localhost:7229/api/calendar/credentials')
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return res.text();
-            })
-            .then((data) => {
-                if (data.trim() === '') {
-                    console.log('No upcoming events');
-
-                } else {
-                    console.log('Upcoming events found');
-                    console.log('Users:', data);
-
-                    const lines = data.trim().split('\n');
-                    const tupleArray = [];
-
-                    for (let i = 0; i < lines.length; i += 3) {
-                        const activity = lines[i].split(': ')[1]?.trim() || 'Unknown Activity';
-                        const date = lines[i + 1].split(': ')[1]?.trim() || 'Unknown Date';
-                        tupleArray.push([date, activity]);
-                    }
-
-                    console.log('Tuple Array:', tupleArray);
-                    this.setState({ dateData: tupleArray })
-                    console.log('TArray:', this.state.dateData);
-
-
-
-                }
-            })
-            .catch((error) => console.log('Users Fetch Error:', error));
+       
 
     }
 
@@ -122,14 +90,7 @@ export default class LandingPage extends Component {
                     </div>
                 </div>
 
-                <h4 className={'homeH1'}> Upcoming Events </h4>
-                <section className={'calendar'}>
-                    <div className={'events'}>
-                        {this.state.dateData.map((type) => {
-                            return <h3 style={{ fontSize: '1rem' }}>{type[0].split(" ")[0]+ "  "+type[1] + " "}</h3>;
-                        })}
-                    </div>
-                </section>
+
 
                 <h1 className={"homeH1"}> Exercise Areas </h1>
 
