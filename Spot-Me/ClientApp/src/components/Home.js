@@ -21,6 +21,10 @@ export class Home extends Component {
             user: {}, 
             dateData: [],
             dateList: tmpDateList,
+            friendData : [],
+            topSquatters: [],
+            topBenchers: [],
+            topDeadlifters: [],
         };
     }
     
@@ -28,7 +32,28 @@ export class Home extends Component {
         checkUserStatus();
         const userName = localStorage.getItem('user');
         const userData = await getUserByUsername(userName);
-        this.setState({ user: userData });
+        // this.setState({ user: userData });
+        this.setState({ user: userData }, async () => {
+            let friendDataArray = [];
+            for (let i = 0; i < this.state.user.friends.length; i++) {
+                const friend = await getUserByUsername(this.state.user.friends[i]);
+                friendDataArray.push(friend);
+            }
+            this.setState({ friendData: friendDataArray }, () => {
+                const allUsers = [this.state.user, ...this.state.friendData];
+                const topSquatters = allUsers.sort((a, b) => b.personalBestSquat - a.personalBestSquat).slice(0, 3);
+                const topBenchers = allUsers.sort((a, b) => b.personalBestBench - a.personalBestBench).slice(0, 3);
+                const topDeadlifters = allUsers.sort((a, b) => b.personalBestDeadlift - a.personalBestDeadlift).slice(0, 3);
+                this.setState({ topSquatters: topSquatters, topBenchers: topBenchers, topDeadlifters: topDeadlifters });
+            });
+        });
+
+        // const allUsers = [this.state.user, ...this.state.friendData];
+        // const topSquatters = allUsers.sort((a, b) => b.personalBestSquat - a.personalBestSquat).slice(0, 3);
+        // const topBenchers = allUsers.sort((a, b) => b.personalBestBench - a.personalBestBench).slice(0, 3);
+        // const topDeadlifters = allUsers.sort((a, b) => b.personalBestDeadlift - a.personalBestDeadlift).slice(0, 3);
+        // this.setState({ topSquatters: topSquatters, topBenchers: topBenchers, topDeadlifters: topDeadlifters });
+
 
 
         fetch('https://localhost:7229/api/calendar/credentials')
@@ -55,9 +80,9 @@ export class Home extends Component {
                         tupleArray.push([date, activity]);
                     }
 
-                    console.log('Tuple Array:', tupleArray);
+                    // console.log('Tuple Array:', tupleArray);
                     this.setState({ dateData: tupleArray })
-                    console.log('TArray:', this.state.dateData);
+                    // console.log('TArray:', this.state.dateData);
 
 
 
@@ -67,28 +92,50 @@ export class Home extends Component {
     }
 
     componentDidUpdate() {
-        //console.log(this.state.user.excercise)
+        // console.log(this.state.topBenchers)
     }
 
     render() {
         return (
             <section>
-            <section style={{marginTop: '5vh'}}>
-                <h4 style={{textAlign: 'left', margin: '0'}}> Weekly Schedule</h4>
-                <div className={'exerciseDate'}>
-                    {this.state.dateList.map((date) => {
-                        return <ProfileDateCard date={date} perms={true} user = {this.state.user}/>
-                    })}
-                </div>
-            </section>
-                            <h4 className={'homeH1'}> Upcoming Events </h4>
+                <section style={{marginTop: '5vh'}}>
+                    <h4 style={{textAlign: 'left', margin: '0'}}> Weekly Schedule</h4>
+                    <div className={'exerciseDate'}>
+                        {this.state.dateList.map((date) => {
+                            return <ProfileDateCard date={date} perms={true} user = {this.state.user}/>
+                        })}
+                    </div>
+                </section>
+                    <h4 className={'homeH1'}> Upcoming Events </h4>
                 <section className={'calendar'}>
                     <div className={'events'}>
                         {this.state.dateData.map((type) => {
                             return <h3 style={{ fontSize: '1rem' }}>{type[0].split(" ")[0]+ "  "+type[1] + " "}</h3>;
                         })}
                     </div>
-                </section></section> 
+                </section>
+                <section>
+                    <h4 className={'homeH1'} onClick={() => console.log(this.state.topBenchers)}> Leaderboard </h4>
+                    <div>
+                        top squatters:
+                        {this.state.topSquatters.map((user, index) => (
+                            <div key={index}>{user.userName}: {user.personalBestSquat} lbs</div>
+                        ))}
+                    </div>
+                    <div>
+                        top benchers:
+                        {this.state.topBenchers.map((user, index) => (
+                            <div key={index}>{user.userName}: {user.personalBestBench} lbs</div>
+                        ))}
+                    </div>
+                    <div>
+                        top deadlifters:
+                        {this.state.topDeadlifters.map((user, index) => (
+                            <div key={index}>{user.userName}: {user.personalBestDeadlift} lbs</div>
+                        ))}
+                    </div>
+                </section>
+            </section> 
         );
     }
 }
