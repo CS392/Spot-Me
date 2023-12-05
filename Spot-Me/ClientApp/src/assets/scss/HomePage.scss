@@ -110,3 +110,11 @@ section {
   display: flex;
 }
 
+.scoreBoard {
+  display: flex;
+  text-transform: capitalize;
+  margin-bottom: 20vh;
+  & > div {
+    flex: 1;
+  }
+}

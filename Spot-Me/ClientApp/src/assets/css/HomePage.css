@@ -108,4 +108,13 @@ section {
   display: flex;
 }
 
+.scoreBoard {
+  display: flex;
+  text-transform: capitalize;
+  margin-bottom: 20vh;
+}
+.scoreBoard > div {
+  flex: 1;
+}
+
 /*# sourceMappingURL=HomePage.css.map */

@@ -106,16 +106,16 @@ export class Home extends Component {
                         })}
                     </div>
                 </section>
-                    <h4 className={'homeH1'}> Upcoming Events </h4>
                 <section className={'calendar'}>
+                    <h4 className={'homeH1'}> Upcoming Events </h4>
                     <div className={'events'}>
                         {this.state.dateData.map((type) => {
                             return <h3 style={{ fontSize: '1rem' }}>{type[0].split(" ")[0]+ "  "+type[1] + " "}</h3>;
                         })}
                     </div>
                 </section>
-                <section>
-                    <h4 className={'homeH1'} onClick={() => console.log(this.state.topBenchers)}> Leaderboard </h4>
+                <h4 className={'homeH1'} onClick={() => console.log(this.state.topBenchers)}> Leaderboard </h4>
+                <section className={'scoreBoard'}>
                     <div>
                         top squatters:
                         {this.state.topSquatters.map((user, index) => (
