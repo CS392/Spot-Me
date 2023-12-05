@@ -179,14 +179,12 @@ export class ExercisePage extends React.Component {
               {" "}
               Submit{" "}
             </button>
-            <button onClick={() => console.log(this.state)}> test </button>
           </div>
         </div>
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Success!</ModalHeader>
           <ModalBody>
             Your submission was successful.{" "}
-            {/* You can customize this message */}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggleModal}>
