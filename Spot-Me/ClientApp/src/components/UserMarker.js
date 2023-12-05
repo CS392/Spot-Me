@@ -36,11 +36,11 @@ class UserMarker extends Component {
             </div>
             </Link>
           ) : (
-            <Link to={`/gym/${name}`} style={{ textDecoration: 'none' }}>
+            //<Link to={`/gym/${name}`} style={{ textDecoration: 'none' }}>
             <div style={markerStyle}>
               <p style={textStyle}>{name}</p>
             </div>
-          </Link>
+          //</Link>
         )
       )
     );
