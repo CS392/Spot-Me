@@ -52,4 +52,20 @@
   margin: 0;
 }
 
+.editMe {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+.editMe > div {
+  display: flex;
+  flex-direction: row;
+}
+.editMe > div > p {
+  flex: 1;
+}
+.editMe > div > input {
+  flex: 7;
+}
+
 /*# sourceMappingURL=ProfilePage.css.map */

@@ -53,3 +53,19 @@
     }
   }
 }
+
+.editMe {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  & > div {
+    display: flex;
+    flex-direction: row;
+    & > p {
+      flex: 1;
+    }
+    & > input {
+      flex: 7
+    }
+  }
+}

@@ -48,12 +48,6 @@ export class ProfilePage extends Component {
     return (
       <>
         <section>
-          {/* <div className={'profileDate'}>
-                        {this.state.dateList.map((date) => {
-                            return <ProfileDateCard date={date}/>
-                        })}
-                    </div> */}
-
           <div className={"profileHeader"}>
             <div>
               <div></div>
@@ -69,8 +63,7 @@ export class ProfilePage extends Component {
           </div>
 
           <div className={"profileEdit"}>
-          <button onClick={() => {this.setState({ editMode: !this.state.editMode })}}>Edit Profile</button>
-            <button className={"buttonRed"}> Delete Account </button>
+            <button onClick={() => {this.setState({ editMode: !this.state.editMode })}}>Edit Profile</button>
           </div>
 
           <div className={"profileDetail"}>
@@ -78,33 +71,38 @@ export class ProfilePage extends Component {
               <p> Personal Records </p>
               <hr />
               {this.state.editMode ? (
-                <div>
-                  <input
-                    type={"number"}
-                    placeholder={"Squat"}
-                    value={this.state.editSquat}
-                    onChange={(e) =>
-                      this.setState({ editSquat: e.target.value })
-                    }
-                  />
-                  <input
-                    type={"number"}
-                    placeholder={"Bench"}
-                    value={this.state.editBench}
-                    onChange={(e) =>
-                      this.setState({ editBench: e.target.value })
-                    }
-                  />
-                  <input
-                    type={"number"}
-                    placeholder={"Deadlift"}
-                    value={this.state.editDeadlift}
-                    onChange={(e) =>
-                      this.setState({ editDeadlift: e.target.value })
-                    }
-                  />
-                  <Button onClick={this.submitPRRecord}>Submit</Button>
+                <>
+                <div className={'editMe'}>
+                  <div>
+                    <p> Squat: </p> <input
+                      type={"number"}
+                      placeholder={"Squat"}
+                      value={this.state.editSquat}
+                      onChange={(e) =>
+                          this.setState({ editSquat: e.target.value })
+                      }/>
+                  </div>
+                  <div>
+                    <p> Bench: </p> <input
+                      type={"number"}
+                      placeholder={"Bench"}
+                      value={this.state.editBench}
+                      onChange={(e) =>
+                        this.setState({ editBench: e.target.value })
+                      }/>
+                  </div>
+                  <div>
+                    <p> Deadlifts: </p> <input
+                      type={"number"}
+                      placeholder={"Deadlift"}
+                      value={this.state.editDeadlift}
+                      onChange={(e) =>
+                          this.setState({ editDeadlift: e.target.value })
+                      }/>
+                  </div>
                 </div>
+                <button onClick={this.submitPRRecord}>Submit</button>
+                </>
               ) : (
                 <div>
                   <p>
