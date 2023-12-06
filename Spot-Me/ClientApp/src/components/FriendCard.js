@@ -23,27 +23,28 @@ export class FriendCard extends Component {
     };
   }
 
-  redirect = async () => {
-    window.location.href = `/user/${this.props.friend}`; // Replace 'username' with the correct property for the friend's username
+    redirect = async () => {
+     //we will redirect the user to the friend's profile page once clicked'
+    window.location.href = `/user/${this.props.friend}`;  
   };
 
   async componentDidMount() {
     checkUserStatus();
-    const f = await getUserByUsername(this.props.friend);
+    const f = await getUserByUsername(this.props.friend); //getting the friends
     this.setState({ friendData: f});
     if(this.props.user.helpNeeded &&
         this.props.user.helpNeeded.includes(this.props.friend)){
             this.setState({modal: !this.state.modal})
         }
   }
-  async addRequest() {
+  async addRequest() { //function to request to add a friend
     const friend = this.state.friendData;
     friend.helpRequests.push(localStorage.getItem("user"));
     await updateUser(friend.id, friend);
     this.setState({ friendData: friend });
   }
 
-  async acceptRequest() {
+  async acceptRequest() { //add the user to the current profile's friend list
     const user = this.props.user;
     user.helpRequests = user.helpRequests.filter(
       (name) => name !== this.props.friend
@@ -56,7 +57,7 @@ export class FriendCard extends Component {
     this.setState({ friendData: friend });
   }
 
-  async acknowledgeRequest() {
+  async acknowledgeRequest() { 
     const user = this.props.user;
     user.helpNeeded = user.helpNeeded.filter(
       (name) => name !== this.props.friend
