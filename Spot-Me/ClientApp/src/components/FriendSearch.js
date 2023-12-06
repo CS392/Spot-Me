@@ -41,20 +41,21 @@ export class FriendSearch extends Component {
         const res = await getAllUsers(); //we are finding in our databas to see if the searched user exist 
         const found = res.find(user => user.userName === this.state.search)
         if (found){
-            if (found.pending.includes(this.state.user.id)){
-                console.log("Already sent a request")
-            }else if (found.friends.includes(this.state.user.id)){
-                console.log("Already friends")
+            if (found.pending.includes(this.state.user.userName)){
+                alert("Already sent a request")
+            }else if (found.friends.includes(this.state.user.userName)){
+                alert("Already friends")
             }else{
                 found.pending.push(this.state.user.userName)
                 updateUser(found.id, found)
                 this.setState({ userNotFound: false });
-                console.log("Friend request sent")
+                alert("Friend request sent")
             }
         } else {
-            
-            this.setState({ userNotFound: true });
-            console.log("User not found")
+            //add something here
+            // this.setState({ userNotFound: true });
+            // console.log("User not found")
+            alert("User not found")
         }
         document.getElementById('friendSearch').value = "";
     }
