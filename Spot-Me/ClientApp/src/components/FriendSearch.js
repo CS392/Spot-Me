@@ -38,7 +38,7 @@ export class FriendSearch extends Component {
     }
 
     handleAddFriend = async () => {
-        const res = await getAllUsers();
+        const res = await getAllUsers(); //we are finding in our databas to see if the searched user exist 
         const found = res.find(user => user.userName === this.state.search)
         if (found){
             if (found.pending.includes(this.state.user.userName)){
