@@ -11,16 +11,19 @@ namespace SpotMe.Controllers
     {
         private readonly GeolocationService _geolocationApiService;
 
+        // Constructor injection of GeolocationService
         public GeolocationController(GeolocationService geolocationApiService)
         {
             _geolocationApiService = geolocationApiService;
         }
 
+        // HTTP GET endpoint for geolocation
         [HttpGet]
         public async Task<IActionResult> Geolocate()
         {
             try
             {
+                // Call the GeolocationService to get geolocation information
                 var response = await _geolocationApiService.GetGeolocation();
                 return Ok(response); // Return the response with an OK status
             }

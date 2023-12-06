@@ -1,37 +1,43 @@
-using System;
-using System.Configuration;
-using System.Data.SqlTypes;
-using System.Threading.Tasks;
+    using System;
+    using System.Configuration;
+    using System.Data.SqlTypes;
+    using System.Threading.Tasks;
 
-namespace SpotMe.Services
-{
-    public class GoogleMapApiService
+    namespace SpotMe.Services
     {
-        private string _apiKey;
-
-        public GoogleMapApiService()
+        public class GoogleMapApiService
         {
-            _apiKey = "AIzaSyCDzY8GN4vjP4cEwoc1Lc5tuQCnpVK2TW0";
-        }
+            private string _apiKey;
 
-        public async Task<string> GetNearbyGymsAsync(string latitude, string longitude, string radius)
-        {
-           using (HttpClient client = new HttpClient())
+            // Constructor initializes the Google Maps API key
+            public GoogleMapApiService()
             {
-                string apiUrl = $"https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=gym&radius={radius}&location={latitude},{longitude }&key={_apiKey}";
+                _apiKey = "AIzaSyCDzY8GN4vjP4cEwoc1Lc5tuQCnpVK2TW0";
+            }
 
-                HttpResponseMessage response = await client.GetAsync(apiUrl);
+            // Async method to retrieve nearby gyms using Google Maps Places API
+            public async Task<string> GetNearbyGymsAsync(string latitude, string longitude, string radius)
+            {
+            // Using statement ensures proper disposal of HttpClient
+            using (HttpClient client = new HttpClient())
+                {
+                    // Construct the API URL with the provided parameters
+                    string apiUrl = $"https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=gym&radius={radius}&location={latitude},{longitude }&key={_apiKey}";
 
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    // Handle errors
-                    return $"Error fetching geolocation: {response.StatusCode}";
+                    // Send an asynchronous GET request to the API
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+                    // Check if the response is successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read the response content as a string and return it
+                        return await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        // Handle errors
+                        return $"Error fetching geolocation: {response.StatusCode}";
+                    }
                 }
             }
         }
     }
-}

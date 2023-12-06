@@ -13,16 +13,19 @@ namespace SpotMeApi.Controllers
     {
         private readonly GoogleMapApiService _googleMapApiService;
 
+        // Constructor injection of GoogleMapApiService
         public MapsController(GoogleMapApiService googleMapApiService)
         {
             _googleMapApiService = googleMapApiService;
         }
 
+        // HTTP GET endpoint for nearby gyms
         [HttpGet("places/nearby")]
         public async Task<IActionResult> NearbyGyms([FromQuery] string latitude, [FromQuery] string longitude, [FromQuery] string radius)
         {
             try
             {
+                // Call the GoogleMapApiService to get nearby gyms
                 var response = await _googleMapApiService.GetNearbyGymsAsync(latitude, longitude, radius);
                 return Ok(response); // Return the response with an OK status
             }
