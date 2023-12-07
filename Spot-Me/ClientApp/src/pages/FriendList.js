@@ -11,6 +11,7 @@ export class FriendList extends Component {
         }
     }
 
+    // get user data from the database and set the state
     async componentDidMount() {
         checkUserStatus();
         const name = localStorage.getItem('user');

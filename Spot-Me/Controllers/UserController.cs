@@ -6,23 +6,27 @@ using SpotMe.Services;
 
 namespace SpotMe.Controllers
 {
+    //API ENDPOINT FOR ALL USER RELATED OPERATIONS
     [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
-
+        
         private readonly UserServices _userServices;
 
         public UserController(UserServices userServices)
         {
+            // inject the user services into the controller
             _userServices = userServices;
         }
 
-        // GET: api/user
+        // ROUTE: /api/user 
+        // get all users in the database
         [HttpGet]
         public async Task<List<User>> Get() => await _userServices.GetAsync();
 
-        // GET api/user/6549c6c2efe126880fd5a266
+        // ROUTE: api/user/{6549c6c2efe126880fd5a266}
+        // get user by their id
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<User>> Get(string id)
         {
@@ -34,7 +38,8 @@ namespace SpotMe.Controllers
             return user;
         }
 
-        // POST api/user
+        // ROUTE: api/user
+        // METHOD: POST a new user into the database
         [HttpPost]
         public async Task<ActionResult<User>> Post(User newUser)
         {
@@ -42,7 +47,8 @@ namespace SpotMe.Controllers
             return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
         }
 
-        // PUT api/user/6549c6c2efe126880fd5a266
+        // ROUTE: api/user/{6549c6c2efe126880fd5a266}
+        // METHOD: PUT update a user in the database
         [HttpPut("{id:length(24)}")]
         public async Task<ActionResult> Put(string id, User updatedUser)
         {
@@ -56,7 +62,8 @@ namespace SpotMe.Controllers
             return Ok(new{message = "Updated Successfully"});
         }
 
-        // DELETE api/user/6549c6c2efe126880fd5a266
+        // ROUTE: api/user/{6549c6c2efe126880fd5a266}
+        // METHOD: DELETE a user from the database
         [HttpDelete("{id:length(24)}")]
         public async Task<ActionResult> Delete(string id)
         {
@@ -69,7 +76,8 @@ namespace SpotMe.Controllers
             return Ok("Deleted Successfully");
         }
 
-        // GET api/user/username/{username}
+        // ROUTE: api/user/username/{username}
+        // METHOD: GET a user by their username
         [HttpGet("username/{username}")]
         public async Task<ActionResult<User>> GetByUsername(string username)
         {
