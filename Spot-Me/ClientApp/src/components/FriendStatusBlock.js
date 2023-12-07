@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {FriendCard} from "./FriendCard";
 
+// Component for a friend status block (spot requests, pending requests, acknowledged requests)
 export class FriendStatusBlock extends Component {
     constructor(props) {
         super(props);
@@ -11,12 +12,14 @@ export class FriendStatusBlock extends Component {
         };
     }
 
+    // if user changes, update state
     componentDidUpdate() {
         if (this.state.user !== this.props.user) {
             this.setState({user: this.props.user})
         }
     }
     
+    // toggle visibility of friend list
     toggleMainVisibility = () => {
         this.setState({
             showMain: !this.state.showMain

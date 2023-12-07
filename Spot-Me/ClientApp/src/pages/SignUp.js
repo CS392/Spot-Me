@@ -9,14 +9,17 @@ export default class SignUp extends Component {
         }
     }
 
+    // If user is already logged in, redirect to home page
     componentDidMount() {
         if (localStorage.getItem("user") !== null) {
             window.location.href = "/";
         }
     }
 
+    // function to sign up an user
     handleSignUp = async () => {
 
+        // check if username already exists
         const users = await fetch("https://localhost:7229/api/user").then(res => res.json());
         for (let index = 0; index < users.length; index++) {
             if (this.state.username === users[index].userName) {
@@ -25,6 +28,7 @@ export default class SignUp extends Component {
             }
         }
 
+        // check if passwords match, username contains spaces, password is 4-20 characters long, and username is 4-12 characters long
         if (this.state.password !== this.state.confirmPassword) {
             alert("Passwords do not match");
             return;
@@ -42,10 +46,12 @@ export default class SignUp extends Component {
             return;
         }
 
+        // create the user credentials
         const entry = {
             username: this.state.username,
             password: this.state.password,
         }
+        // add the user to the database
         fetch('https://localhost:7229/api/user', {
             method: 'POST',
             headers: {
