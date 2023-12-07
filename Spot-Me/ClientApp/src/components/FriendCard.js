@@ -29,22 +29,32 @@ export class FriendCard extends Component {
   };
 
   async componentDidMount() {
+    // check if user is logged in, if not redirect to login page
     checkUserStatus();
-    const f = await getUserByUsername(this.props.friend); //getting the friends
+
+    // get friend data from the database and set the state
+    const f = await getUserByUsername(this.props.friend);
     this.setState({ friendData: f});
+
+    // if a friend accepted to spot the user, show a modal
     if(this.props.user.helpNeeded &&
         this.props.user.helpNeeded.includes(this.props.friend)){
             this.setState({modal: !this.state.modal})
         }
   }
-  async addRequest() { //function to request to add a friend
+
+  //function to request help from a friend
+  async addRequest() { 
+    // add the friend to the user's help request list
     const friend = this.state.friendData;
     friend.helpRequests.push(localStorage.getItem("user"));
     await updateUser(friend.id, friend);
     this.setState({ friendData: friend });
   }
 
-  async acceptRequest() { //add the user to the current profile's friend list
+  // function to accept a spot request
+  async acceptRequest() {
+    // remove the friend from the user's help request list
     const user = this.props.user;
     user.helpRequests = user.helpRequests.filter(
       (name) => name !== this.props.friend
@@ -57,6 +67,7 @@ export class FriendCard extends Component {
     this.setState({ friendData: friend });
   }
 
+  // function to acknowledge that a friend has accepted to spot the user
   async acknowledgeRequest() { 
     const user = this.props.user;
     user.helpNeeded = user.helpNeeded.filter(

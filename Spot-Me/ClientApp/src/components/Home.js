@@ -27,17 +27,19 @@ export class Home extends Component {
     
     async componentDidMount() {
         checkUserStatus();
+        // get user data from the database and set the state
         const userName = localStorage.getItem('user');
         const userData = await getUserByUsername(userName);
-        // this.setState({ user: userData });
         this.setState({ user: userData }, async () => {
             let friendDataArray = [];
+            // construct an array of friend data
             for (let i = 0; i < this.state.user.friends.length; i++) {
                 const friend = await getUserByUsername(this.state.user.friends[i]);
                 friendDataArray.push(friend);
             }
             this.setState({ friendData: friendDataArray }, () => {
                 const allUsers = [this.state.user, ...this.state.friendData];
+                // get top squatters, benchers, and deadlifters from all user and their friends and set the state
                 const topSquatters = allUsers.sort((a, b) => b.personalBestSquat - a.personalBestSquat).slice(0, 3);
                 const topBenchers = allUsers.sort((a, b) => b.personalBestBench - a.personalBestBench).slice(0, 3);
                 const topDeadlifters = allUsers.sort((a, b) => b.personalBestDeadlift - a.personalBestDeadlift).slice(0, 3);
@@ -45,15 +47,9 @@ export class Home extends Component {
             });
         });
 
-        // const allUsers = [this.state.user, ...this.state.friendData];
-        // const topSquatters = allUsers.sort((a, b) => b.personalBestSquat - a.personalBestSquat).slice(0, 3);
-        // const topBenchers = allUsers.sort((a, b) => b.personalBestBench - a.personalBestBench).slice(0, 3);
-        // const topDeadlifters = allUsers.sort((a, b) => b.personalBestDeadlift - a.personalBestDeadlift).slice(0, 3);
-        // this.setState({ topSquatters: topSquatters, topBenchers: topBenchers, topDeadlifters: topDeadlifters });
-
-
-
+        //event display 
         fetch('https://localhost:7229/api/calendar/credentials')
+        //this function is used to render out all upcoming events 
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Network response was not ok');
@@ -62,34 +58,28 @@ export class Home extends Component {
             })
             .then((data) => {
                 if (data.trim() === '') {
-                    console.log('No upcoming events');
+                    console.log('No upcoming events'); 
 
                 } else {
                     console.log('Upcoming events found');
                     console.log('Users:', data);
+                    //given we recieved something, we need to process it
 
                     const lines = data.trim().split('\n');
-                    const tupleArray = [];
+                    //it is returned in the form of string, need to separte them
+                    const tupleArray = []; //set up where to store the result
 
-                    for (let i = 0; i < lines.length; i += 3) {
+                    for (let i = 0; i < lines.length; i += 3) {//skipping two element at a time 
                         const activity = lines[i].split(': ')[1]?.trim() || 'Unknown Activity';
                         const date = lines[i + 1].split(': ')[1]?.trim() || 'Unknown Date';
                         tupleArray.push([date, activity]);
+                        //use a forloop to take advantge of how the data is strctured
                     }
 
-                    // console.log('Tuple Array:', tupleArray);
                     this.setState({ dateData: tupleArray })
-                    // console.log('TArray:', this.state.dateData);
-
-
-
                 }
             })
             .catch((error) => console.log('Users Fetch Error:', error));
-    }
-
-    componentDidUpdate() {
-        // console.log(this.state.topBenchers)
     }
 
     render() {
