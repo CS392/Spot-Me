@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { ExerciseCard } from './ExerciseCard';
-import { exerciseArray } from '../assets/Util/ExerciseType';
-import weight from '../assets/images/weight-gym-svgrepo-com.svg';
 import { ProfileDateCard } from "../components/ProfileDateCard";
 import '../assets/css/HomePage.css';
 import {checkUserStatus, getUserByUsername} from "../assets/Util/Util";
