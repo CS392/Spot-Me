@@ -10,12 +10,14 @@ export default class Login extends Component {
         }
     }
 
+    // If user is already logged in, redirect to home page
     componentDidMount() {
         if (localStorage.getItem("user") !== null) {
             window.location.href = "/";
         }
     }
 
+    // Check if user exists in database and if so, log them in
     handleSignIn = async () => {
         const users = await fetch("https://localhost:7229/api/user").then(res => res.json());
         console.log(users);
@@ -29,6 +31,7 @@ export default class Login extends Component {
         alert("Incorrect username or password");
     }
 
+    // Update state when user types in input fields
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,

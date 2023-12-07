@@ -20,16 +20,15 @@ export class FriendPage extends Component {
     }
 
     async componentDidMount() {
+        // get friend userName from the current URL
         const friendName = window.location.pathname.split('/')[2];
+
+        // get friend data from the database and set the state
         const friends = await getUserByUsername(friendName);
         this.setState({ friend: friends });
  
 
     }
-    componentDidUpdate() {
-        //console.log(this.state.friend.exercise);
-    }
-
 
     render() {
         return (
@@ -40,6 +39,7 @@ export class FriendPage extends Component {
                         <div>
                             <div></div>
                         </div>
+                            {/*map out friend's basic information*/}
                         <div>
                             <h4> Friend: {this.state.friend && this.state.friend.userName} </h4>
                             <p> Standard Member </p>
@@ -50,7 +50,7 @@ export class FriendPage extends Component {
 
                         </div>
                     </div>
-                    
+                    {/*map out friend's personal records*/}
                     <div className={'profileDetail'}>
                         <div>
                             <p> Personal Records </p>
@@ -61,6 +61,7 @@ export class FriendPage extends Component {
                         </div>
                         </div>
                 </section>
+                    {/*map out friend's schedule*/}
                 <section style={{ marginTop: '5vh' }}>
                     <h4 style={{ textAlign: 'left', margin: '0' }}> Weekly Schedule</h4>
                     <div className={'exerciseDate'}>
