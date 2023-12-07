@@ -47,7 +47,7 @@ export class Home extends Component {
             });
         });
 
-
+        //event display 
         fetch('https://localhost:7229/api/calendar/credentials')
         //this function is used to render out all upcoming events 
             .then((res) => {
@@ -58,19 +58,22 @@ export class Home extends Component {
             })
             .then((data) => {
                 if (data.trim() === '') {
-                    console.log('No upcoming events');
+                    console.log('No upcoming events'); 
 
                 } else {
                     console.log('Upcoming events found');
                     console.log('Users:', data);
+                    //given we recieved something, we need to process it
 
                     const lines = data.trim().split('\n');
-                    const tupleArray = [];
+                    //it is returned in the form of string, need to separte them
+                    const tupleArray = []; //set up where to store the result
 
-                    for (let i = 0; i < lines.length; i += 3) {
+                    for (let i = 0; i < lines.length; i += 3) {//skipping two element at a time 
                         const activity = lines[i].split(': ')[1]?.trim() || 'Unknown Activity';
                         const date = lines[i + 1].split(': ')[1]?.trim() || 'Unknown Date';
                         tupleArray.push([date, activity]);
+                        //use a forloop to take advantge of how the data is strctured
                     }
 
                     this.setState({ dateData: tupleArray })

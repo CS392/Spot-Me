@@ -5,7 +5,7 @@ import '../assets/css/ComponentScss/NavMenu.css'
 import { logout } from '../assets/Util/Util';
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
-
+  //nav bar that displays the menu and redirect the user to different pages
   constructor (props) {
     super(props);
 
