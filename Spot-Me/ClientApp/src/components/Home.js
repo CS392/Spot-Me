@@ -57,6 +57,7 @@ export class Home extends Component {
 
 
         fetch('https://localhost:7229/api/calendar/credentials')
+        //this function is used to render out all upcoming events 
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Network response was not ok');
