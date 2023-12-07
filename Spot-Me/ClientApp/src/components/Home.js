@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { ExerciseCard } from './ExerciseCard';
-import { exerciseArray } from '../assets/Util/ExerciseType';
-import weight from '../assets/images/weight-gym-svgrepo-com.svg';
 import { ProfileDateCard } from "../components/ProfileDateCard";
 import '../assets/css/HomePage.css';
 import {checkUserStatus, getUserByUsername} from "../assets/Util/Util";
@@ -30,30 +27,25 @@ export class Home extends Component {
     
     async componentDidMount() {
         checkUserStatus();
+        // get user data from the database and set the state
         const userName = localStorage.getItem('user');
         const userData = await getUserByUsername(userName);
-        // this.setState({ user: userData });
         this.setState({ user: userData }, async () => {
             let friendDataArray = [];
+            // construct an array of friend data
             for (let i = 0; i < this.state.user.friends.length; i++) {
                 const friend = await getUserByUsername(this.state.user.friends[i]);
                 friendDataArray.push(friend);
             }
             this.setState({ friendData: friendDataArray }, () => {
                 const allUsers = [this.state.user, ...this.state.friendData];
+                // get top squatters, benchers, and deadlifters from all user and their friends and set the state
                 const topSquatters = allUsers.sort((a, b) => b.personalBestSquat - a.personalBestSquat).slice(0, 3);
                 const topBenchers = allUsers.sort((a, b) => b.personalBestBench - a.personalBestBench).slice(0, 3);
                 const topDeadlifters = allUsers.sort((a, b) => b.personalBestDeadlift - a.personalBestDeadlift).slice(0, 3);
                 this.setState({ topSquatters: topSquatters, topBenchers: topBenchers, topDeadlifters: topDeadlifters });
             });
         });
-
-        // const allUsers = [this.state.user, ...this.state.friendData];
-        // const topSquatters = allUsers.sort((a, b) => b.personalBestSquat - a.personalBestSquat).slice(0, 3);
-        // const topBenchers = allUsers.sort((a, b) => b.personalBestBench - a.personalBestBench).slice(0, 3);
-        // const topDeadlifters = allUsers.sort((a, b) => b.personalBestDeadlift - a.personalBestDeadlift).slice(0, 3);
-        // this.setState({ topSquatters: topSquatters, topBenchers: topBenchers, topDeadlifters: topDeadlifters });
-
 
 
         fetch('https://localhost:7229/api/calendar/credentials')
@@ -81,19 +73,10 @@ export class Home extends Component {
                         tupleArray.push([date, activity]);
                     }
 
-                    // console.log('Tuple Array:', tupleArray);
                     this.setState({ dateData: tupleArray })
-                    // console.log('TArray:', this.state.dateData);
-
-
-
                 }
             })
             .catch((error) => console.log('Users Fetch Error:', error));
-    }
-
-    componentDidUpdate() {
-        // console.log(this.state.topBenchers)
     }
 
     render() {

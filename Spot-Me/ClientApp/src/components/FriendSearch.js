@@ -12,11 +12,12 @@ export class FriendSearch extends Component {
         }
     }
 
+    // check if user is logged in, if not redirect to login page
     componentDidMount() {
         checkUserStatus();
     }
 
-    
+    // update state if user changes
     componentDidUpdate() {
         if (this.state.user !== this.props.user) {
             this.setState({user: this.props.user})
@@ -38,8 +39,12 @@ export class FriendSearch extends Component {
     }
 
     handleAddFriend = async () => {
-        const res = await getAllUsers(); //we are finding in our databas to see if the searched user exist 
+        // get all users from the database
+        const res = await getAllUsers(); 
+        // check if the searched user exists in the database
         const found = res.find(user => user.userName === this.state.search)
+
+        // if the user exists, check if they are already friends or if a request has already been sent
         if (found){
             if (found.pending.includes(this.state.user.userName)){
                 alert("Already sent a request")
@@ -52,21 +57,26 @@ export class FriendSearch extends Component {
                 alert("Friend request sent")
             }
         } else {
-            //add something here
-            // this.setState({ userNotFound: true });
-            // console.log("User not found")
             alert("User not found")
         }
         document.getElementById('friendSearch').value = "";
     }
 
+    // accept friend request
     handleAccept = async (userName) => {
         try {
+            // update user's pending and friends list
             const updatedUser = this.state.user;
+
+            // remove the user from the pending list and add them to the friends list
             updatedUser.pending = updatedUser.pending.filter(name => name !== userName)
             updatedUser.friends.push(userName)
             this.setState({user: updatedUser})
+
+            // update the user in the database
             await updateUser(this.state.user.id, updatedUser)
+
+            // update the friend's friends list
             const friend = await getUserByUsername(userName)
             friend.friends.push(this.state.user.userName)
             await updateUser(friend.id, friend)
@@ -75,12 +85,16 @@ export class FriendSearch extends Component {
         }
     }
 
+    // decline friend request
     handleDecline = async (userName) => {
         try {
+            // update user's pending list
             const updatedUser = this.state.user;
             updatedUser.pending = updatedUser.pending.filter(name => name !== userName);
             this.setState({user: updatedUser})
             await updateUser(this.state.user.id, updatedUser)
+
+            // update friend's pending list
             const friend = await getUserByUsername(userName)
             friend.pending = friend.pending.filter(name => name !== this.state.user.userName);
             await updateUser(friend.id, friend)

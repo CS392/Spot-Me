@@ -1,14 +1,19 @@
+// Description: This file contains all the reusable functions that are used throughout the application.
+
+// reusable function to route unlogged in users / logged in users to the correct page
 export const checkUserStatus = () => {
     if (localStorage.getItem('user') === null) {
         window.location.href = "/login";
     }
 }
 
+// reusable function to log out a user
 export const logout = () => {
     localStorage.removeItem('user');
     window.location.href = "/login";
 }
 
+// reusable function to get all users
 export const getAllUsers = async () => {
     try {
         const response = await fetch(`https://localhost:7229/api/user`);
@@ -23,6 +28,7 @@ export const getAllUsers = async () => {
     }
 }
 
+// reusable function to update a user with their id
 export const updateUser = async (id, updatedUser) => {
     try {
         const response = await fetch(`https://localhost:7229/api/user/${id}`, {
@@ -40,7 +46,7 @@ export const updateUser = async (id, updatedUser) => {
     }
 }
 
-
+// reusable function to get a user by their username
 export const getUserByUsername = async (username) => {
     try {
         const response = await fetch(`https://localhost:7229/api/user/username/${username}`);

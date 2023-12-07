@@ -4,6 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace SpotMe.Models
 {
 
+    // User model for the database
     public class User
     {
         [BsonId]
@@ -55,6 +56,7 @@ namespace SpotMe.Models
 
     }
 
+    // Location model for the database
     public class Location 
     {
         [BsonElement("latitude")]
