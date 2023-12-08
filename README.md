@@ -1,5 +1,12 @@
 # Spot-Me
 
+## FOLDERS TO VALIDATE
+```
+Models/
+Services/
+Controllers/
+ClientApp/src
+```
 ## HOW TO START THE APPLICATION
 ### Required for All IDE
 Go to ClientApp on the terminal and enter
