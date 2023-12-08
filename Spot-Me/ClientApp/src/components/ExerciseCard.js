@@ -13,6 +13,7 @@ export class ExerciseCard extends Component {
         this.fetchExerciseData();
     }
 
+    // Fetches Exercise data
     async fetchExerciseData() {
         try {
             const { type } = this.props; 

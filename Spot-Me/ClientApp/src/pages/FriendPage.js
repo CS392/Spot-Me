@@ -7,6 +7,7 @@ export class FriendPage extends Component {
         super(props);
         const date = new Date();
         let tmpDateList = [];
+        // Generates the next Five dates 
         for (let i = 0; i < 5; i++) {
             const tmpDate = new Date();
             tmpDate.setDate(date.getDate() + i);

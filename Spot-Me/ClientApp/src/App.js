@@ -10,6 +10,7 @@ export default class App extends Component {
   render() {
     return (
       <Layout>
+        {/*  Routing that iterates over all the object within AppRoutes and link it to a component */}
         <Routes>
           {AppRoutes.map((route, index) => {
             const { element, ...rest } = route;

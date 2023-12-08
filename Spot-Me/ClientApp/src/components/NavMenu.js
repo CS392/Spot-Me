@@ -29,6 +29,10 @@ export class NavMenu extends Component {
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
             <ul className="navbar-nav flex-grow">
+              {/* 
+                Conditional statement to check if user exists, if they exist we 
+                render one version of Nav menu, otherwise we do another.
+              */}
               {
                 localStorage.getItem("user") === null &&
                   <>

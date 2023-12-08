@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 export default class SignUp extends Component {
+    //  Initialization
     constructor(props) {
         super(props);
         this.state = {
@@ -9,12 +10,14 @@ export default class SignUp extends Component {
         }
     }
 
+    // If user exist prior session, we'll redirect them
     componentDidMount() {
         if (localStorage.getItem("user") !== null) {
             window.location.href = "/";
         }
     }
 
+    // Conditional checks and logic for user sign up into DB
     handleSignUp = async () => {
 
         const users = await fetch("https://localhost:7229/api/user").then(res => res.json());
@@ -59,6 +62,7 @@ export default class SignUp extends Component {
         window.location.href = "/login";
     }
 
+    // Basically UseEffect(); changing variables value
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,

@@ -5,6 +5,7 @@ import {checkUserStatus, getUserByUsername} from "../assets/Util/Util";
 
 export class Home extends Component {
     static displayName = Home.name;
+    // Initialization 
     constructor(props) {
         super(props);
         const date = new Date();
@@ -88,6 +89,7 @@ export class Home extends Component {
                 <section style={{marginTop: '5vh'}}>
                     <h4 style={{textAlign: 'left', margin: '0'}}> Weekly Schedule</h4>
                     <div className={'exerciseDate'}>
+                        {/* Loop through the next 5 days */}
                         {this.state.dateList.map((date) => {
                             return <ProfileDateCard date={date} perms={true} user = {this.state.user}/>
                         })}
@@ -96,12 +98,14 @@ export class Home extends Component {
                 <section className={'calendar'}>
                     <h4 className={'homeH1'}> Upcoming Events </h4>
                     <div className={'events'}>
+                        {/* Loop through Calendar Events */}
                         {this.state.dateData.map((type) => {
                             return <h3 style={{ fontSize: '1rem' }}>{type[0].split(" ")[0]+ "  "+type[1] + " "}</h3>;
                         })}
                     </div>
                 </section>
                 <h4 className={'homeH1'} onClick={() => console.log(this.state.topBenchers)}> Leaderboard </h4>
+                {/* Fetches information regarding the top spotters */}
                 <section className={'scoreBoard'}>
                     <div>
                         top squatters:

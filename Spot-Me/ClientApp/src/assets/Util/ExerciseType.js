@@ -1,3 +1,4 @@
+// Exercise types that exists used for some calls
 export const exerciseArray = [
     "back", 
     "cardio",

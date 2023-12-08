@@ -10,6 +10,7 @@ const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
+// Entry point of the project
 root.render(
   <BrowserRouter basename={baseUrl}>
     <App />

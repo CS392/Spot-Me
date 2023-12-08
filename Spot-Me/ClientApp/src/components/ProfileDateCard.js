@@ -45,6 +45,7 @@ export class ProfileDateCard extends Component {
             <>
                 <section className={'dateCardSection'}>
                     <p> {this.state.date.toLocaleDateString()} </p>
+                    {/* Check if object isn't null and iterate over it */}
                     {All_dates &&
                         Object.keys(All_dates).map((date, dateIndex) => {
                             console.log(date.replaceAll("-", '/'));
@@ -64,7 +65,8 @@ export class ProfileDateCard extends Component {
                                 );
                             }
                         })}
-    
+
+                    {/* Check for user permission to modify the page */}
                     {this.props.perms && (
                         <div onClick={() => (window.location.href = ExercisePageRoute)}>
                             <p> + </p>

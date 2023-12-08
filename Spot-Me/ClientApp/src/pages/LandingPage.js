@@ -7,7 +7,6 @@ export default class LandingPage extends Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
             user: {},
             exercise: 'back',
@@ -15,6 +14,7 @@ export default class LandingPage extends Component {
         };
     }
 
+    // Fetches exercise when you click on it 
     handleExerciseClick = async (exerciseType) => {
         this.setState({ exercise: exerciseType });
 
@@ -31,6 +31,7 @@ export default class LandingPage extends Component {
         }
     };
 
+    // Fetch local user information
     componentDidMount() {
         const user = localStorage.getItem('user');
         fetch(`https://localhost:7229/api/user/username/${user}`)
@@ -40,12 +41,6 @@ export default class LandingPage extends Component {
                 this.setState({ user: data });
             })
             .catch((e) => console.log('Users Fetch Error:', e));
-
-
-
-        //Calendar code
-       
-
     }
 
     render() {
@@ -95,6 +90,7 @@ export default class LandingPage extends Component {
                 <h1 className={"homeH1"}> Exercise Areas </h1>
 
                 <div className={'selections'}>
+                    {/* Iterate all the exercises type into Buttons */}
                     {exerciseArray.map((exercise) => (
                         <button key={exercise} onClick={() => this.handleExerciseClick(exercise)}>
                             {exercise}

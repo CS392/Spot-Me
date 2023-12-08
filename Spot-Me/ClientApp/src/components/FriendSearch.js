@@ -116,6 +116,7 @@ export class FriendSearch extends Component {
                         onChange={this.handleChange}
                     />
                     <button onClick={this.handleAddFriend}>Add</button>
+                    {/* Conditional check if friend exists */}
                     {this.state.userNotFound && <p>User not found</p>}
                 </div>
 
@@ -124,6 +125,7 @@ export class FriendSearch extends Component {
                 <hr/>
                 <div>
 
+                    {/* Loop through friends */}
                 {this.state.showMain && this.state.user.pending && this.state.user.pending.map((userName, idx) => {
                     return (
                         <div key={idx} className={'pendingFriends'}>
