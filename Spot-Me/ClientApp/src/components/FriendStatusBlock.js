@@ -19,6 +19,7 @@ export class FriendStatusBlock extends Component {
         }
     }
     
+    // Toggle the visibility of the friends section
     // toggle visibility of friend list
     toggleMainVisibility = () => {
         this.setState({
@@ -35,6 +36,7 @@ export class FriendStatusBlock extends Component {
                     <h4> {this.props.user.friends && this.props.user.friends.length} </h4>
                 </div>
                 <hr/>
+                {/* Loop through friends with required information */}
                 {this.state.showMain && <main id={`${this.state.blockHeader}-main`}>
                     {this.state.user.friends && this.state.user.friends.map((friend, index) => {
                         return <FriendCard key={index} friend={friend} user={this.state.user}/>

@@ -14,16 +14,17 @@ namespace Spot_Me.Controllers
         {
             _calendarService = calendarService;
         }
-
+        //we created multiple endpoints here for testing purposes, we did not use all of the calls
         [HttpGet("credentials")]
         public async Task<IActionResult> GetCalendarData()
         {
             string res = await _calendarService.GetCalendarData();
-
+            //calling the service where it takes care of everything
             return Ok( res);
         }
 
         [HttpGet("data")]
+        //this is used to see if we have established a connection with google 
         public async Task<IActionResult> GetCredentials()
         {
             var credentials = await _calendarService.GetCredentials();
@@ -38,7 +39,7 @@ namespace Spot_Me.Controllers
             }
         }
 
-
+        //ignore this, purely for testing
         [HttpGet("credential")]
         public async Task<IActionResult> GetCredential()
         {

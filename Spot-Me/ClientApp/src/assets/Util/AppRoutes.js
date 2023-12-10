@@ -10,6 +10,7 @@ import Error from "../../components/Error";
 import MapPage from "../../pages/MapPage";
 import LandingPage from "../../pages/LandingPage";
 
+// Routes for application to iterate over
 const AppRoutes = [
   {
     index: true,

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 export default class SignUp extends Component {
+    //  Initialization
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +17,6 @@ export default class SignUp extends Component {
         }
     }
 
-    // function to sign up an user
     handleSignUp = async () => {
 
         // check if username already exists
@@ -65,6 +65,7 @@ export default class SignUp extends Component {
         window.location.href = "/login";
     }
 
+    // Basically UseEffect(); changing variables value
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
